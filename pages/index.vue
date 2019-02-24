@@ -27,6 +27,7 @@ export default {
       this.$OneSignal.push(() => {
         this.$OneSignal.isPushNotificationsEnabled(isEnabled => {
           if (isEnabled) {
+            console.log(this.$OneSignal)
             alert('test')
           } else {
             alert('not enabled')

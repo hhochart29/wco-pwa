@@ -5,7 +5,7 @@
   "author": "Herve",
   "private": true,
   "scripts": {
-    "dev": "nuxt",
+    "dev": "NODE_ENV=developemnt node server.js",
     "build": "nuxt build",
     "start": "nuxt start",
     "generate": "nuxt generate",
@@ -17,7 +17,8 @@
     "@nuxtjs/pwa": "^2.6.0",
     "cross-env": "^5.2.0",
     "dotenv": "^6.2.0",
-    "nuxt": "^2.4.0"
+    "nuxt": "^2.4.0",
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
