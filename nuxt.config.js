@@ -1,7 +1,5 @@
 const pkg = require('./package')
 require('dotenv').config()
-const fs = require('fs')
-const path = require('path')
 
 module.exports = {
   mode: 'universal',
@@ -41,7 +39,7 @@ module.exports = {
 
   oneSignal: {
     init: {
-      // cdn: true,
+      cdn: true,
       appId: process.env.ONE_SIGNAL_APP_ID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
