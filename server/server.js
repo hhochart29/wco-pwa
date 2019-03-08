@@ -6,7 +6,7 @@ const isProd = (process.env.NODE_ENV === 'production')
 const port = process.env.PORT || 3000
 
 // We instantiate nuxt.js with the options
-const config = require('./nuxt.config.js')
+const config = require('../nuxt.config.js')
 config.dev = !isProd
 const nuxt = new Nuxt(config)
 
@@ -24,8 +24,8 @@ if (config.dev) {
 
 function listen () {
   const options = {
-    key: fs.readFileSync('./localhost-key.pem'),
-    cert: fs.readFileSync('./localhost.pem')
+    key: fs.readFileSync('./server/localhost-key.pem'),
+    cert: fs.readFileSync('./server/localhost.pem')
   }
 
   https.createServer(options, nuxt.render).listen(port)

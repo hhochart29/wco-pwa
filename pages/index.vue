@@ -1,78 +1,56 @@
 <template>
-  <section class="container">
-    <div>
-      <h1 class="title">
-        wco-pwa
-      </h1>
-      <h2 class="subtitle">
-        Weather Control Organization progressive web app
-      </h2>
-      <div class="links">
-        <a
-          class="button--green"
-        >Documentation</a>
-        <a
-          class="button--grey"
-          @click="send"
-        >GitHub</a>
-      </div>
-    </div>
-  </section>
+  <div class="flex overflow-hidden" :style="style" @touchStart="touchStart" @touchEnd="touchEnd" @touchMove="touchMove">
+    <Map class="container-full bg-indigo-lightest flex-basis-100 flex-no-shrink" />
+    <News class="container-full bg-indigo-lightest flex-basis-100 flex-no-shrink" />
+    <Delegation class="container-full bg-indigo-lightest flex-basis-100 flex-no-shrink" />
+  </div>
 </template>
 
 <script>
+import Map from '@/components/map'
+import News from '@/components/news'
+import Delegation from '@/components/delegation'
+
+import { mapGetters } from 'vuex'
+
 export default {
+  name: 'Home',
+  components: {
+    Map,
+    News,
+    Delegation
+  },
+  computed: {
+    style () {
+      return {
+        height: `calc(100vh - ${this.getStoreHeaderHeight()}px`
+      }
+    }
+  },
   methods: {
-    send () {
-      this.$OneSignal.push(() => {
-        this.$OneSignal.isPushNotificationsEnabled(isEnabled => {
-          if (isEnabled) {
-            console.log(this.$OneSignal)
-            alert('test')
-          } else {
-            alert('not enabled')
-          }
-        })
-      })
+    ...mapGetters({
+      getStoreHeaderHeight: 'header/height'
+    }),
+    touchStart () {
+      console.log('touchStart')
+    },
+    touchMove () {
+      console.log('touchMove')
+    },
+    touchEnd () {
+      console.log('touchEnd')
     }
   }
 }
 </script>
 
-<style>
-  /* Sample `apply` at-rules with Tailwind CSS
-    .container {
-      @apply min-h-screen flex justify-center items-center text-center mx-auto;
-    }
-    */
-  .container {
-    margin: 0 auto;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
+<style lang="postcss">
+  .container-full {
+    @apply px-5;
+    @apply py-5;
   }
 
-  .title {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    display: block;
-    font-weight: 300;
-    font-size: 100px;
-    color: #35495e;
-    letter-spacing: 1px;
-  }
-
-  .subtitle {
-    font-weight: 300;
-    font-size: 42px;
-    color: #526488;
-    word-spacing: 5px;
-    padding-bottom: 15px;
-  }
-
-  .links {
-    padding-top: 15px;
+  .flex-basis-100 {
+    flex-basis: 100%;
   }
 </style>
