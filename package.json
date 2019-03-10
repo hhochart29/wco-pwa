@@ -20,7 +20,8 @@
     "draggable": "^4.2.0",
     "express": "^4.16.4",
     "gsap": "^2.1.2",
-    "nuxt": "^2.4.0"
+    "nuxt": "^2.4.0",
+    "vue2-touch-events": "^1.1.2"
   },
   "devDependencies": {
     "@vue/eslint-config-standard": "^4.0.0",
@@ -38,6 +39,7 @@
     "eslint-plugin-standard": ">=4.0.0",
     "eslint-plugin-vue": "^5.0.0",
     "nodemon": "^1.18.9",
+    "postcss-preset-env": "^6.6.0",
     "prettier": "1.14.3",
     "tailwindcss": "^0.7.0"
   }
