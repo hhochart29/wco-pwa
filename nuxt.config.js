@@ -37,7 +37,14 @@ module.exports = {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/onesignal', '@nuxtjs/pwa'],
+  modules: [
+    ['@nuxtjs/onesignal'], ['@nuxtjs/pwa'],
+    ['@nuxtjs/apollo', {
+      clientConfigs: {
+        default: '~/plugins/apollo-config.js'
+      }
+    }]
+  ],
 
   oneSignal: {
     init: {
@@ -49,6 +56,7 @@ module.exports = {
       }
     }
   },
+
   /*
   ** Build configuration
   */

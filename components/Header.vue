@@ -1,7 +1,7 @@
 <template>
-  <div class="bg-indigo-darkest text-indigo-lightest px-3 pt-1 pb-1 flex justify-between">
+  <div class="bg-indigo-darkest text-indigo-lightest px-2 pt-1 pb-1 flex justify-between">
     <div class="flex" ref="tabs">
-      <div :key="`tab.name-${index}`" @click="setHeaderIndex(index)" class="tab px-2 flex items-center" :class="{active: getStoreHeaderIndex === index}" v-for="(tab, index) in tabs">
+      <div :key="`tab.name-${index}`" @click="setHeaderIndex(index)" class="tab p-1 flex items-center" :class="{active: getStoreHeaderIndex === index}" v-for="(tab, index) in tabs">
         <span class="active-bg" :style="activeBgStyle" v-if="index === 0"></span>
         <img class="rounded-full md:w-8 m-1ohH" :src="tab.image" :alt="tab.name">
       </div>

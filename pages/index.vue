@@ -1,8 +1,10 @@
 <template xmlns:v-touch="http://www.w3.org/1999/xhtml">
-  <div :style="style" class="flex overflow-hidden" id="slider" ref="slider" v-touch:swipe="swipe">
-    <Map class="container-full bg-indigo-lightest flex-basis-100 flex-no-shrink" />
-    <News class="container-full bg-indigo-lightest flex-basis-100 flex-no-shrink" />
-    <Delegation class="container-full bg-indigo-lightest flex-basis-100 flex-no-shrink" />
+  <div class="slider-wrapper overflow-hidden">
+    <div :style="style" class="flex" id="slider" ref="slider" v-touch:swipe="swipe">
+      <Map class="basic-container" />
+      <News class="basic-container" />
+      <Delegation class="basic-container" />
+    </div>
   </div>
 </template>
 
@@ -27,13 +29,9 @@ export default {
     }),
     style () {
       return {
-        height: `calc(100vh - ${this.getStoreHeaderHeight}px`
+        height: `calc(100vh - ${this.getStoreHeaderHeight}px`,
+        transform: `translateX(calc(-${this.getStoreHeaderIndex} * 100%))`
       }
-    }
-  },
-  watch: {
-    getStoreHeaderIndex (newIndex, oldIndex) {
-      console.log(newIndex, oldIndex)
     }
   },
   methods: {
@@ -43,10 +41,10 @@ export default {
     swipe (direction) {
       switch (direction) {
         case 'left':
-          this.setHeaderIndexBySwipe(-1)
+          this.setHeaderIndexBySwipe(1)
           break
         case 'right':
-          this.setHeaderIndexBySwipe(1)
+          this.setHeaderIndexBySwipe(-1)
           break
         case 'bottom':
           console.log('swiping bottom')
@@ -57,12 +55,6 @@ export default {
         default:
           return false
       }
-    },
-    touchMove () {
-      console.log('touchMove')
-    },
-    touchEnd () {
-      console.log('touchEnd')
     }
   }
 }
@@ -74,11 +66,18 @@ export default {
     @apply py-5;
   }
 
+  .basic-container {
+    @apply container-full;
+    @apply bg-grey-light;
+    @apply flex-basis-100;
+    @apply flex-no-shrink;
+  }
+
   .flex-basis-100 {
     flex-basis: 100%;
   }
 
   #slider {
-    transition: 1s ease-in-out translateX;
+    transition: 0.4s ease-in-out transform;
   }
 </style>

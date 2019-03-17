@@ -1,5 +1,5 @@
 <template>
-  <div id="loader"></div>
+  <div id="loader">This is loading :)</div>
 </template>
 
 <script>

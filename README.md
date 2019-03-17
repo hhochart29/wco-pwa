@@ -2,6 +2,17 @@
 
 > Weather Control Organization progressive web app
 
+**This PWA is build with**
+  - NuxtJS
+  - Express for localHTTPS
+  - OneSignal for push notification handling
+  - DatoCMS for the backend
+  - Tailwind for the UI
+
+# TODO
+
+- Make an entry component that fetches the whole API & hydrates the store
+
 ## Build Setup
 
 ``` bash
@@ -18,5 +29,3 @@ $ npm start
 # generate static project
 $ npm run generate
 ```
-
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
