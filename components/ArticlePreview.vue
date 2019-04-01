@@ -1,12 +1,12 @@
 <template>
-  <article :style="articleBackgroundImage(image.url)" class="card">
+  <article :style="articleBackgroundImage(image.url)" class="card bg-full">
     {{ title }}
   </article>
 </template>
 
 <script>
 export default {
-  name: 'Article',
+  name: 'ArticlePreview',
   props: {
     id: String,
     title: String,
@@ -25,5 +25,8 @@ export default {
 <style scoped lang="postcss">
   .card {
     @apply p-3;
+  }
+  .bg-full {
+    @apply bg-no-repeat bg-cover bg-center;
   }
 </style>

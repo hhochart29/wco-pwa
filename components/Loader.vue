@@ -4,6 +4,17 @@
 
 <script>
 export default {
-  name: 'Loader'
+  name: 'Loader',
+  data: () => ({
+    loading: true
+  }),
+  methods: {
+    start () {
+      this.loading = true
+    },
+    finish () {
+      this.loading = false
+    }
+  }
 }
 </script>

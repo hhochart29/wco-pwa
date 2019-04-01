@@ -1,10 +1,10 @@
 <template>
   <div class="bg-indigo-darkest text-indigo-lightest px-2 py-1 flex justify-between">
     <div class="flex" ref="tabs">
-      <div :key="`tab.name-${index}`" @click="setHeaderIndex(index)" class="tab p-1 flex items-center" :class="{active: getStoreHeaderIndex === index}" v-for="(tab, index) in tabs">
-        <span class="active-bg" :style="activeBgStyle" v-if="index === 0"></span>
+      <nuxt-link :to="{name: tab.route}" :key="`${tab.name}-${index}`" class="tab p-1 flex items-center cursor-pointer" v-for="(tab, index) in tabs">
+        <span class="active-bg" v-if="index === 0"></span>
         <img class="rounded-full md:w-8 m-1ohH" :src="tab.image" :alt="tab.name">
-      </div>
+      </nuxt-link>
     </div>
 
     <div class="flex items-center">
@@ -19,31 +19,20 @@
 </template>
 
 <script>
-import { mapActions, mapGetters } from 'vuex'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Header',
   data: () => ({
     tabs: [
-      { name: 'Carte', image: 'https://via.placeholder.com/50x50' },
-      { name: 'Articles', image: 'https://via.placeholder.com/50x50' },
-      { name: 'Délégué', image: 'https://via.placeholder.com/50x50' }
+      { name: 'Carte', route: 'index', image: 'https://via.placeholder.com/50x50' },
+      { name: 'Articles', route: 'article', image: 'https://via.placeholder.com/50x50' },
+      { name: 'Délégué', route: 'delegation', image: 'https://via.placeholder.com/50x50' }
     ]
   }),
-  computed: {
-    ...mapGetters({
-      getStoreHeaderIndex: 'header/index'
-    }),
-    activeBgStyle () {
-      return {
-        transform: `translateX(calc(100 * ${this.getStoreHeaderIndex}%))`
-      }
-    }
-  },
   methods: {
     ...mapActions({
-      setHeaderTab: 'header/tabs',
-      setHeaderIndex: 'header/index'
+      setHeaderTab: 'header/tabs'
     })
   },
   mounted () {
@@ -56,12 +45,10 @@ export default {
 <style lang="postcss" scoped>
   div.tab {
     position: relative;
-
     & img {
       z-index: 1;
       position: relative;
     }
-
     & .active-bg {
       content: '';
       position: absolute;

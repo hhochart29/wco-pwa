@@ -1,11 +1,11 @@
 <template>
   <div>
-    Page de la carte
+    Page 404 :)
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Map'
+  name: 'Error404'
 }
 </script>

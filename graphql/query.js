@@ -22,3 +22,26 @@ export const allArticles = gql`
     }
   }
 `
+
+export const articleById = gql`
+ query ($id: ItemId) {
+  article(filter: { id: { eq: $id } }) {
+    id
+    title
+    content
+    dateTime
+    readingTime
+    image {
+      alt
+      url
+    }
+    source {
+      name
+      picture {
+        alt
+        url
+      }
+    }
+  }
+ }
+`
