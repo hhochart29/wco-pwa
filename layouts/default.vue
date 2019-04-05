@@ -61,17 +61,6 @@ export default {
     this.height = this.$refs.header.$el.clientHeight
     this.setHeaderHeight(this.height)
     window.addEventListener('resize', this.handleResize)
-
-    // Inside page components
-    this.$OneSignal.push(() => {
-      this.$OneSignal.isPushNotificationsEnabled((isEnabled) => {
-        if (isEnabled) {
-          console.log('Push notifications are enabled!')
-        } else {
-          console.log('Push notifications are not enabled yet.')
-        }
-      })
-    })
   },
   beforeDestroy: function () {
     window.removeEventListener('resize', this.handleResize)
@@ -80,20 +69,20 @@ export default {
 </script>
 
 <style lang="postcss">
-.container-full {
-  @apply px-5;
-  @apply py-5;
-}
+  .container-full {
+    @apply px-5;
+    @apply py-5;
+  }
 
-.flex-basis-100 {
-  flex-basis: 100%;
-}
+  .flex-basis-100 {
+    flex-basis: 100%;
+  }
 
-.basic-container {
-  @apply container-full;
-  @apply bg-grey-light;
-  @apply flex-basis-100;
-  @apply flex-no-shrink;
-  @apply items-start;
-}
+  .basic-container {
+    @apply container-full;
+    @apply bg-grey-light;
+    @apply flex-basis-100;
+    @apply flex-no-shrink;
+    @apply items-start;
+  }
 </style>
