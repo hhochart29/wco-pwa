@@ -17,6 +17,11 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
+  env: {
+    nuxt_signal_app_id: process.env.ONE_SIGNAL_APP_ID,
+    nuxt_signal_rest_api: process.env.ONE_SIGNAL_REST_API
+  },
+
   loading: '~/components/loading.vue',
 
   /*

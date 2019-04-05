@@ -61,6 +61,17 @@ export default {
     this.height = this.$refs.header.$el.clientHeight
     this.setHeaderHeight(this.height)
     window.addEventListener('resize', this.handleResize)
+
+    // Inside page components
+    this.$OneSignal.push(() => {
+      this.$OneSignal.isPushNotificationsEnabled((isEnabled) => {
+        if (isEnabled) {
+          console.log('Push notifications are enabled!')
+        } else {
+          console.log('Push notifications are not enabled yet.')
+        }
+      })
+    })
   },
   beforeDestroy: function () {
     window.removeEventListener('resize', this.handleResize)

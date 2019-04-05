@@ -8,6 +8,9 @@
     </div>
 
     <div class="flex items-center">
+      <div class="mr-2 md:text-xs" @click="sendNotif">
+        Send notif
+      </div>
       <div class="mr-2 md:text-xs">
         Mr. Moussard
       </div>
@@ -33,7 +36,42 @@ export default {
   methods: {
     ...mapActions({
       setHeaderTab: 'header/tabs'
-    })
+    }),
+    sendNotif () {
+      let message = {
+        app_id: process.env.nuxt_signal_app_id,
+        contents: { 'en': 'English Message' },
+        included_segments: ['All']
+      }
+      let headers = {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Authorization': `Basic NWE3MDQ2NDAtMDM4Yi00MWRiLTgxMjktNjVmMTkxZWJlZWUw`
+      }
+
+      let options = {
+        host: 'onesignal.com',
+        port: 443,
+        path: '/api/v1/notifications',
+        method: 'POST',
+        headers: headers
+      }
+
+      let https = require('https')
+      let req = https.request(options, res => {
+        res.on('data', data => {
+          console.log('Response:')
+          console.log(JSON.parse(data))
+        })
+      })
+
+      req.on('error', e => {
+        console.log('ERROR:')
+        console.log(e)
+      })
+
+      req.write(JSON.stringify(message))
+      req.end()
+    }
   },
   mounted () {
     let tabNb = this.$refs.tabs.children.length
@@ -45,10 +83,12 @@ export default {
 <style lang="postcss" scoped>
   div.tab {
     position: relative;
+
     & img {
       z-index: 1;
       position: relative;
     }
+
     & .active-bg {
       content: '';
       position: absolute;
