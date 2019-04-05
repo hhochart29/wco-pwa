@@ -17,10 +17,7 @@ module.exports = {
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
   },
 
-  /*
-  ** Customize the progress-bar color
-  */
-  loading: { color: '#fff' },
+  loading: '~/components/loading.vue',
 
   /*
   ** Global CSS
@@ -38,12 +35,14 @@ module.exports = {
   ** Nuxt.js modules
   */
   modules: [
-    ['@nuxtjs/onesignal'], ['@nuxtjs/pwa'],
+    ['@nuxtjs/onesignal'],
+    ['@nuxtjs/pwa'],
     ['@nuxtjs/apollo', {
       clientConfigs: {
         default: '~/plugins/apollo-config.js'
       }
-    }]
+    }],
+    ['nuxt-leaflet']
   ],
 
   oneSignal: {

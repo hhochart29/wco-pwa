@@ -2,7 +2,7 @@
   <div>
     <Header ref="header" />
     <div class="slider-wrapper overflow-hidden">
-      <div :style="style" class="flex basic-container {" id="slider" ref="slider" v-touch:swipe="swipe">
+      <div :style="style" class="flex basic-container" id="slider" ref="slider" v-touch:swipe="swipe">
         <nuxt />
       </div>
     </div>
@@ -83,5 +83,6 @@ export default {
   @apply bg-grey-light;
   @apply flex-basis-100;
   @apply flex-no-shrink;
+  @apply items-start;
 }
 </style>

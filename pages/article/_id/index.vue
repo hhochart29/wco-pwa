@@ -19,6 +19,7 @@ export default {
   apollo: {
     article: {
       query: articleById,
+      // function instead of object `variables` grants vue instance access :)
       variables () {
         return {
           id: this.$route.params.id

@@ -65,3 +65,11 @@
   @apply px-5;
   @apply py-2;
 }
+
+.alert {
+  @apply bg-indigo-lightest;
+  @apply border-l-4;
+  @apply border-indigo;
+  @apply text-indigo-dark;
+  @apply p-4;
+}

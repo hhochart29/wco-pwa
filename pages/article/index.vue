@@ -6,17 +6,15 @@
       </nuxt-link>
     </div>
   </div>
-  <Loader v-else />
 </template>
 
 <script>
 import { allArticles } from '@/graphql/query'
-import Loader from '@/components/Loader'
 import ArticlePreview from '@/components/ArticlePreview'
 
 export default {
   name: 'ArticleList',
-  components: { Loader, ArticlePreview },
+  components: { ArticlePreview },
   data: () => ({
     allArticles: null
   }),
