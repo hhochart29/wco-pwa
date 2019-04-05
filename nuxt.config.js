@@ -47,7 +47,6 @@ module.exports = {
 
   oneSignal: {
     init: {
-      cdn: true,
       appId: process.env.ONE_SIGNAL_APP_ID,
       allowLocalhostAsSecureOrigin: true,
       welcomeNotification: {
