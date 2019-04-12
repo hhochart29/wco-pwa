@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wcocontainer">
     Page de délégation
   </div>
 </template>

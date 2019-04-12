@@ -1,8 +1,9 @@
 <template>
   <div>
+    <div v-if="!isPageLoaded" class="loading-modal">First Loader</div>
     <Header ref="header" />
     <div class="slider-wrapper overflow-hidden">
-      <div :style="style" class="flex basic-container" id="slider" ref="slider" v-touch:swipe="swipe">
+      <div :style="style" class="flex layout-container" id="slider" ref="slider" v-touch:swipe="swipe">
         <nuxt />
       </div>
     </div>
@@ -23,7 +24,8 @@ export default {
   }),
   computed: {
     ...mapGetters({
-      getStoreHeaderHeight: 'header/height'
+      getStoreHeaderHeight: 'header/height',
+      isPageLoaded: 'loaded'
     }),
     style () {
       return {
@@ -69,20 +71,23 @@ export default {
 </script>
 
 <style lang="postcss">
-  .container-full {
-    @apply px-5;
-    @apply py-5;
-  }
+.loading-modal {
+  @apply p-5;
+  @apply flex;
+  @apply justify-center;
+  @apply items-center;
+  @apply text-indigo-lightest;
+  @apply bg-indigo-darkest;
+  @apply h-screen;
+  @apply w-screen;
+  @apply fixed;
+  z-index: 9999;
+}
 
-  .flex-basis-100 {
-    flex-basis: 100%;
-  }
-
-  .basic-container {
-    @apply container-full;
-    @apply bg-grey-light;
-    @apply flex-basis-100;
-    @apply flex-no-shrink;
-    @apply items-start;
-  }
+.layout-container {
+  flex-basis: 100%;
+  @apply bg-grey-light;
+  @apply flex-no-shrink;
+  @apply items-start;
+}
 </style>

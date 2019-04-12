@@ -61,9 +61,10 @@
  * @import "utilities/skew-transforms";
  */
 
-.container {
+.wcocontainer {
   @apply px-5;
-  @apply py-2;
+  @apply py-5;
+  @apply w-full;
 }
 
 .alert {

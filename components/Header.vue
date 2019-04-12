@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-indigo-darkest text-indigo-lightest px-2 py-1 flex justify-between">
+  <header class="bg-indigo-darkest text-indigo-lightest px-2 py-1 flex justify-between">
     <div class="flex" ref="tabs">
       <nuxt-link :to="{name: tab.route}" :key="`${tab.name}-${index}`" class="tab p-1 flex items-center cursor-pointer" v-for="(tab, index) in tabs">
         <span class="active-bg" v-if="index === 0"></span>
@@ -18,7 +18,7 @@
         <img class="rounded-full md:w-8" src="https://via.placeholder.com/50x50">
       </div>
     </div>
-  </div>
+  </header>
 </template>
 
 <script>
@@ -40,20 +40,18 @@ export default {
     sendNotif () {
       let message = {
         app_id: process.env.nuxt_signal_app_id,
-        contents: { 'en': 'English Message' },
+        contents: { 'en': 'Notifcation from rest API' },
         included_segments: ['All']
       }
-      let headers = {
-        'Content-Type': 'application/json; charset=utf-8',
-        'Authorization': `Basic NWE3MDQ2NDAtMDM4Yi00MWRiLTgxMjktNjVmMTkxZWJlZWUw`
-      }
-
       let options = {
         host: 'onesignal.com',
         port: 443,
         path: '/api/v1/notifications',
         method: 'POST',
-        headers: headers
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8',
+          'Authorization': `Basic ${process.env.nuxt_signal_rest_api}`
+        }
       }
 
       let https = require('https')

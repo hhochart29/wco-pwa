@@ -18,8 +18,9 @@ export const mutations = {
 }
 
 export const actions = {
-  height ({ commit }, value) {
-    commit('HEIGHT', value)
+  async height ({ commit, dispatch }, value) {
+    await commit('HEIGHT', value)
+    await dispatch('Loaded', null, { root: true })
   },
   tabs ({ commit }, value) {
     commit('TABS', value)

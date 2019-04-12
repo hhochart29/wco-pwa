@@ -7,7 +7,7 @@
       </l-map>
     </no-ssr>
   </div>
-  <div v-else class="alert" role="alert">Aucune coordonnées GPS de disponible</div>
+  <div v-else class="alert m-5" role="alert">Aucune coordonnées GPS de disponible</div>
 </template>
 
 <script>
