@@ -1,56 +1,40 @@
 <template>
-  <div class="map-wrap" v-if="lat !== undefined && lng !== undefined">
-    <no-ssr>
-      <l-map :zoom=13 :center="[lat, lng]">
-        <l-tile-layer url="https://{s}.tile.osm.org/{z}/{x}/{y}.png" />
-        <l-marker :lat-lng="[lat, lng]" />
-      </l-map>
-    </no-ssr>
+  <div class="map-wrap" v-if="geolocationData">
+    <MapComponent/>
   </div>
   <div v-else class="alert m-5" role="alert">Aucune coordonnées GPS de disponible</div>
 </template>
 
 <script>
+import Map from '@/components/Map'
+import { mapGetters, mapActions } from 'vuex'
+
 export default {
   name: 'Map',
-  data: () => ({
-    location: {}
-  }),
+  components: {
+    MapComponent: Map
+  },
   computed: {
-    lat () {
-      return this.location.latitude
-    },
-    lng () {
-      return this.location.longitude
+    ...mapGetters({
+      geolocation: 'map/geolocation'
+    }),
+    geolocationData () {
+      return this.geolocation && this.geolocation.latitude && this.geolocation.longitude
     }
   },
   beforeMount () {
-    try {
-      this.getLocation()
-    } catch (error) {
-      console.error(error)
-    }
+    this.setGeolocation()
   },
   methods: {
-    getLocation () {
-      if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            this.location = position.coords
-          },
-          (error) => console.error(error))
-      } else {
-        console.log('Geo Location not supported by browser')
-      }
-    }
-  },
-  mounted () {
+    ...mapActions({
+      setGeolocation: 'map/geolocation'
+    })
   }
 }
 </script>
 
-<style lang="postcss" scoped>
-  .map-wrap {
-    @apply h-full w-full;
-  }
+<style lang="postcss">
+.map-wrap {
+  @apply h-full w-full;
+}
 </style>

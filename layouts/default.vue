@@ -29,7 +29,7 @@ export default {
     }),
     style () {
       return {
-        height: `calc(100vh - ${this.getStoreHeaderHeight}px`
+        height: `calc(100vh - ${this.getStoreHeaderHeight}px)`
       }
     }
   },

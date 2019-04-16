@@ -1,3 +1,4 @@
+const webpack = require('webpack')
 const pkg = require('./package')
 require('dotenv').config()
 
@@ -19,7 +20,8 @@ module.exports = {
 
   env: {
     nuxt_signal_app_id: process.env.ONE_SIGNAL_APP_ID,
-    nuxt_signal_rest_api: process.env.ONE_SIGNAL_REST_API
+    nuxt_signal_rest_api: process.env.ONE_SIGNAL_REST_API,
+    mapbox_token: process.env.MAPBOX_TOKEN
   },
 
   loading: '~/components/loading.vue',
@@ -46,8 +48,7 @@ module.exports = {
       clientConfigs: {
         default: '~/plugins/apollo-config.js'
       }
-    }],
-    ['nuxt-leaflet']
+    }]
   ],
 
   oneSignal: {
