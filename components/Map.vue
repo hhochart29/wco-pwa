@@ -31,7 +31,7 @@ export default {
         container: this.$refs.map,
         style: this.style,
         center: [this.geolocation.longitude, this.geolocation.latitude],
-        zoom: 14,
+        zoom: 12,
         pitch: 0,
         minZoom: 2,
         maxZoom: 20,
