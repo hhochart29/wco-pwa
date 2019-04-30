@@ -1,5 +1,5 @@
 <template>
-  <div ref="map"/>
+  <div ref="map" :style="mapHeight" />
 </template>
 
 <script>
@@ -12,12 +12,19 @@ export default {
     mbgl: null,
     token: process.env.mapbox_token,
     style: 'mapbox://styles/herveh/cjukd6nxk0plk1fnu0k1w6pyo',
-    zoom: 12
+    zoom: 12,
+    geolocate: null
   }),
   computed: {
     ...mapGetters({
-      geolocation: 'map/geolocation'
-    })
+      geolocation: 'map/geolocation',
+      headerHeight: 'header/height'
+    }),
+    mapHeight () {
+      return {
+        height: `calc(100vh - ${this.headerHeight}px)`
+      }
+    }
   },
   mounted () {
     require('mapbox-gl/dist/mapbox-gl.css')
@@ -37,18 +44,22 @@ export default {
         maxZoom: 20,
         attributionControl: false
       })
-      const geolocate = new this.mbgl.GeolocateControl({
+      this.geolocate = new this.mbgl.GeolocateControl({
         positionOptions: {
           enableHighAccuracy: true
         },
         trackUserLocation: true
       })
-      this.map.addControl(geolocate, 'bottom-right')
-      this.map.on('load', () => {
-        setTimeout(_ => {
-          geolocate.trigger()
-        }, 1000)
-      })
+      this.map.addControl(this.geolocate, 'bottom-right')
+
+      this.mapFullyLoaded(this.setMarkers)
+    },
+    mapFullyLoaded (callback) {
+      if (this.map.loaded()) return this.$nextTick(callback)
+      this.map.once('render', () => this.mapFullyLoaded(callback))
+    },
+    setMarkers () {
+      this.geolocate.trigger()
     }
   }
 }

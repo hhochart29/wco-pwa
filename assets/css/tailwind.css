@@ -65,6 +65,9 @@
   @apply px-5;
   @apply py-5;
   @apply w-full;
+  @apply flex-wrap;
+  @apply justify-around;
+  @apply flex;
 }
 
 .alert {

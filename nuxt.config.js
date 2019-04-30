@@ -1,4 +1,3 @@
-const webpack = require('webpack')
 const pkg = require('./package')
 require('dotenv').config()
 

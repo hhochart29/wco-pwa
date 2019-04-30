@@ -2,7 +2,7 @@
   <div>
     <div v-if="!isPageLoaded" class="loading-modal">First Loader</div>
     <Header ref="header" />
-    <div class="slider-wrapper overflow-hidden">
+    <div class="slider-wrapper">
       <div :style="style" class="flex layout-container" id="slider" ref="slider" v-touch:swipe="swipe">
         <nuxt />
       </div>
@@ -29,7 +29,7 @@ export default {
     }),
     style () {
       return {
-        height: `calc(100vh - ${this.getStoreHeaderHeight}px)`
+        minHeight: `calc(100vh - ${this.getStoreHeaderHeight}px)`
       }
     }
   },

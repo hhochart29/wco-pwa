@@ -1,16 +1,15 @@
 <template>
-  <nuxt-link
-    tag="article"
-    :style="articleBackgroundImage(image.url)"
-    class="bg-full card"
-    :to="{name: 'article-id', params: { id: id } }"
-  >
-    <div class="articleTitle">
-    {{ title }}
+  <nuxt-link tag="article" :to="{name: 'article-id', params: { id: id } }" class="card">
+    <img src="https://tailwindcss.com/img/card-top.jpg">
+    <div>
+      <div>{{ title }}</div>
+      <p>{{ contentPreview }}</p>
     </div>
-    <p>
-      {{ contentPreview }}
-    </p>
+    <div>
+      <span>#photography</span>
+      <span>#travel</span>
+      <span>#winter</span>
+    </div>
   </nuxt-link>
 </template>
 
@@ -30,20 +29,33 @@ export default {
       })
     },
     contentPreview () {
-      return `${this.content.substr(0, 50)} ...`
+      return `${this.content.substr(0, 150)} ...`
     }
   }
 }
 </script>
 
 <style scoped lang="postcss">
-  .card {
-    @apply p-3;
-    @apply m-3;
-    @apply cursor-pointer;
+.card {
+  @apply max-w-sm rounded overflow-hidden shadow-lg m-5;
+  & img {
+    @apply w-full;
   }
-
-  .bg-full {
-    @apply bg-no-repeat bg-cover bg-center;
+  & > div {
+    @apply px-6 py-4;
+    &:first-of-type {
+      & > div {
+        @apply font-bold text-xl mb-2;
+      }
+      & > p {
+        @apply text-grey-darker text-base;
+      }
+    }
+    &:last-of-type {
+      & > span {
+        @apply inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2;
+      }
+    }
   }
+}
 </style>
