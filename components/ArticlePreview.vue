@@ -1,32 +1,43 @@
 <template>
   <nuxt-link tag="article" :to="{name: 'article-id', params: { id: id } }" class="card">
-    <img src="https://tailwindcss.com/img/card-top.jpg">
+    <img :src="image.url" alt="image.alt">
     <div>
       <div>{{ title }}</div>
       <p>{{ contentPreview }}</p>
     </div>
     <div>
-      <span>#photography</span>
-      <span>#travel</span>
-      <span>#winter</span>
+      <span>
+        <img :src="source.picture.url">
+        {{ source.name }}
+      </span>
+      <span>{{ date }}</span>
     </div>
   </nuxt-link>
 </template>
 
 <script>
+import dayjs from 'dayjs'
+import 'dayjs/locale/fr'
+
 export default {
   name: 'ArticlePreview',
   props: {
     id: String,
     title: String,
     image: Object,
-    content: String
+    content: String,
+    source: Object,
+    readingTime: Number,
+    dateTime: String
   },
   computed: {
     articleBackgroundImage () {
       return (url) => ({
         backgroundImage: `url(${url})`
       })
+    },
+    date () {
+      return dayjs(this.dateTime).locale('fr').format('Publié à HH:mm le D MMM')
     },
     contentPreview () {
       return `${this.content.substr(0, 150)} ...`
@@ -37,7 +48,8 @@ export default {
 
 <style scoped lang="postcss">
 .card {
-  @apply max-w-sm rounded overflow-hidden shadow-lg m-5;
+  @apply rounded overflow-hidden shadow-lg m-5 flex-grow;
+  flex-basis: 17rem;
   & img {
     @apply w-full;
   }
@@ -53,7 +65,10 @@ export default {
     }
     &:last-of-type {
       & > span {
-        @apply inline-block bg-grey-lighter rounded-full px-3 py-1 text-sm font-semibold text-grey-darker mr-2;
+        @apply inline-block bg-grey-lighter rounded-full px-3 py-1 my-1 text-sm font-semibold text-grey-darker mr-2;
+        & > img {
+          @apply w-6 rounded-lg align-middle;
+        }
       }
     }
   }

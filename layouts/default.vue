@@ -1,10 +1,16 @@
-<template>
+<template xmlns:v-touch="http://www.w3.org/1999/xhtml">
   <div>
     <div v-if="!isPageLoaded" class="loading-modal">First Loader</div>
-    <Header ref="header" />
+    <Header ref="header"/>
     <div class="slider-wrapper">
-      <div :style="style" class="flex layout-container" id="slider" ref="slider" v-touch:swipe="swipe">
-        <nuxt />
+      <div
+        :style="style"
+        class="flex layout-container"
+        id="slider"
+        ref="slider"
+        v-touch:swipe="swipe"
+      >
+        <nuxt/>
       </div>
     </div>
   </div>
