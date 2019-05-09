@@ -7,15 +7,17 @@
         class="tab p-1 flex items-center cursor-pointer"
         v-for="(tab, index) in tabs"
       >
-        <img class="w-6 mx-1 mt-1" :src="tab.image" :alt="tab.name">
+        <img class="w-6 mx-1" :src="tab.image" :alt="tab.name">
       </nuxt-link>
 
-      <img class="text-center flex-grow" :src="logo" alt="Weather Control Organization Logo">
+      <div class="tab p-1 flex justify-center items-center flex-grow">
+        <img class="h-6" :src="logo" alt="Weather Control Organization Logo">
+      </div>
 
       <div class="mr-2 md:text-xs" @click="sendNotif">Send notif</div>
       <div class="mr-2 md:text-xs">Mr. Moussard</div>
       <nuxt-link :to="{name: account}" class="tab p-1 flex items-center cursor-pointer">
-        <img class="w-6 mx-1 mt-1" :src="userImage" alt="Mon compte">
+        <img class="w-6 mx-1" :src="userImage" alt="Mon compte">
       </nuxt-link>
     </div>
   </header>
@@ -27,6 +29,7 @@ import map from '@/assets/images/map.svg'
 import news from '@/assets/images/news.svg'
 import vote from '@/assets/images/vote.svg'
 import user from '@/assets/images/user.svg'
+import logo from '@/assets/images/wco.png'
 
 export default {
   name: 'Header',
@@ -36,7 +39,8 @@ export default {
       { name: 'Articles', route: 'article', image: news },
       { name: 'Délégué', route: 'delegation', image: vote }
     ],
-    userImage: user
+    userImage: user,
+    logo
   }),
   methods: {
     ...mapActions({
