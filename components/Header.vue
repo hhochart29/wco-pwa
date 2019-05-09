@@ -1,37 +1,42 @@
 <template>
-  <header class="bg-indigo-darkest text-indigo-lightest px-2 py-1 flex justify-between">
-    <div class="flex" ref="tabs">
-      <nuxt-link :to="{name: tab.route}" :key="`${tab.name}-${index}`" class="tab p-1 flex items-center cursor-pointer" v-for="(tab, index) in tabs">
-        <span class="active-bg" v-if="index === 0"></span>
-        <img class="rounded-full md:w-8 m-1ohH" :src="tab.image" :alt="tab.name">
+  <header class="bg-indigo-darkest text-indigo-lightest px-2 py-1">
+    <div class="flex items-center justify-between" ref="tabs">
+      <nuxt-link
+        :to="{name: tab.route}"
+        :key="`${tab.name}-${index}`"
+        class="tab p-1 flex items-center cursor-pointer"
+        v-for="(tab, index) in tabs"
+      >
+        <img class="w-6 mx-1 mt-1" :src="tab.image" :alt="tab.name">
       </nuxt-link>
-    </div>
 
-    <div class="flex items-center">
-      <div class="mr-2 md:text-xs" @click="sendNotif">
-        Send notif
-      </div>
-      <div class="mr-2 md:text-xs">
-        Mr. Moussard
-      </div>
-      <div class="flex items-center">
-        <img class="rounded-full md:w-8" src="https://via.placeholder.com/50x50">
-      </div>
+      <img class="text-center flex-grow" :src="logo" alt="Weather Control Organization Logo">
+
+      <div class="mr-2 md:text-xs" @click="sendNotif">Send notif</div>
+      <div class="mr-2 md:text-xs">Mr. Moussard</div>
+      <nuxt-link :to="{name: account}" class="tab p-1 flex items-center cursor-pointer">
+        <img class="w-6 mx-1 mt-1" :src="userImage" alt="Mon compte">
+      </nuxt-link>
     </div>
   </header>
 </template>
 
 <script>
 import { mapActions } from 'vuex'
+import map from '@/assets/images/map.svg'
+import news from '@/assets/images/news.svg'
+import vote from '@/assets/images/vote.svg'
+import user from '@/assets/images/user.svg'
 
 export default {
   name: 'Header',
   data: () => ({
     tabs: [
-      { name: 'Carte', route: 'index', image: 'https://via.placeholder.com/50x50' },
-      { name: 'Articles', route: 'article', image: 'https://via.placeholder.com/50x50' },
-      { name: 'Délégué', route: 'delegation', image: 'https://via.placeholder.com/50x50' }
-    ]
+      { name: 'Carte', route: 'index', image: map },
+      { name: 'Articles', route: 'article', image: news },
+      { name: 'Délégué', route: 'delegation', image: vote }
+    ],
+    userImage: user
   }),
   methods: {
     ...mapActions({
@@ -70,33 +75,37 @@ export default {
       req.write(JSON.stringify(message))
       req.end()
     }
-  },
-  mounted () {
-    let tabNb = this.$refs.tabs.children.length
-    this.setHeaderTab(tabNb)
   }
 }
 </script>
 
 <style lang="postcss" scoped>
-  div.tab {
+.tab {
+  position: relative;
+
+  &.nuxt-link-exact-active {
+    border-bottom: 2px solid config('colors.white');
+  }
+
+  & img {
+    z-index: 1;
     position: relative;
 
-    & img {
-      z-index: 1;
-      position: relative;
-    }
-
-    & .active-bg {
-      content: '';
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      right: 0;
-      left: 0;
-      z-index: 0;
-      @apply bg-indigo-dark;
-      transition: transform 0.4s ease-in-out;
+    & path {
+      fill: white;
     }
   }
+
+  & .active-bg {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 0;
+    @apply bg-indigo-dark;
+    transition: transform 0.4s ease-in-out;
+  }
+}
 </style>

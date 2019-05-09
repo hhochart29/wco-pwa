@@ -36,6 +36,23 @@
  * @import "components/forms";
  */
 
+ .wcocontainer {
+  @apply px-5;
+  @apply py-5;
+  @apply w-full;
+  @apply flex-wrap;
+  @apply justify-around;
+  @apply flex;
+}
+
+.alert {
+  @apply bg-indigo-lightest;
+  @apply border-l-4;
+  @apply border-indigo;
+  @apply text-indigo-dark;
+  @apply p-4;
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.
@@ -60,20 +77,3 @@
  * @import "utilities/background-patterns";
  * @import "utilities/skew-transforms";
  */
-
-.wcocontainer {
-  @apply px-5;
-  @apply py-5;
-  @apply w-full;
-  @apply flex-wrap;
-  @apply justify-around;
-  @apply flex;
-}
-
-.alert {
-  @apply bg-indigo-lightest;
-  @apply border-l-4;
-  @apply border-indigo;
-  @apply text-indigo-dark;
-  @apply p-4;
-}

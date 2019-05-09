@@ -4,6 +4,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import sun from '@/assets/images/sun.png'
 
 export default {
   name: 'Map',
@@ -13,7 +14,15 @@ export default {
     token: process.env.mapbox_token,
     style: 'mapbox://styles/herveh/cjukd6nxk0plk1fnu0k1w6pyo',
     zoom: 12,
-    geolocate: null
+    geolocate: null,
+    geolocateControl: {
+      positionOptions: { enableHighAccuracy: true },
+      fitBoundsOptions: { maxZoom: 10 },
+      trackUserLocation: true
+    },
+    icons: {
+      sun
+    }
   }),
   computed: {
     ...mapGetters({
@@ -38,7 +47,7 @@ export default {
         container: this.$refs.map,
         style: this.style,
         center: [this.geolocation.longitude, this.geolocation.latitude],
-        zoom: 6,
+        zoom: 8,
         pitch: 0,
         minZoom: 2,
         maxZoom: 20,
@@ -47,13 +56,7 @@ export default {
       // Disable pitch
       this.map.dragRotate.disable()
 
-      this.geolocate = new this.mbgl.GeolocateControl({
-        positionOptions: {
-          enableHighAccuracy: true
-        },
-        fitBoundsOptions: { maxZoom: 8 },
-        trackUserLocation: true
-      })
+      this.geolocate = new this.mbgl.GeolocateControl(this.geolocateControl)
       this.map.addControl(this.geolocate, 'bottom-right')
 
       this.mapFullyLoaded(this.setMarkers)
@@ -75,12 +78,16 @@ export default {
               type: 'Feature',
               geometry: {
                 type: 'Point',
-                coordinates: [this.geolocation.longitude + 1, this.geolocation.latitude + 1]
+                coordinates: [this.geolocation.longitude + 0.3, this.geolocation.latitude + 0.3]
               },
               properties: {
-                'marker-color': '#3bb2d0',
-                'marker-size': 'large',
-                'marker-symbol': 'rocket'
+                icon: {
+                  iconUrl: this.icons.sun,
+                  iconSize: [50, 50], // size of the icon
+                  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
+                  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
+                  className: 'dot'
+                }
               }
             }]
         }
@@ -100,6 +107,8 @@ export default {
         },
         'filter': ['==', '$type', 'Point']
       })
+
+      // this.mbgl.Marker()setLngLat([38.913184, -77.031952]).addTo(this.map)
     }
   }
 }
