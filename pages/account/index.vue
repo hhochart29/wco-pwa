@@ -12,7 +12,7 @@ export default {
     return new Promise(resolve => {
       setTimeout(() => {
         return resolve()
-      }, 800)
+      }, 1000)
     })
   }
 }
