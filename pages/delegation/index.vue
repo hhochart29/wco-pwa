@@ -6,6 +6,13 @@
 
 <script>
 export default {
-  name: 'Delegation'
+  name: 'Delegation',
+  asyncData () {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        return resolve()
+      }, 1000)
+    })
+  }
 }
 </script>

@@ -14,6 +14,13 @@ export default {
   components: {
     MapComponent: Map
   },
+  asyncData () {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        return resolve()
+      }, 1000)
+    })
+  },
   computed: {
     ...mapGetters({
       geolocation: 'map/geolocation'

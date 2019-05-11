@@ -1,5 +1,5 @@
 <template>
-  <div ref="map" :style="mapHeight" />
+  <div ref="map" :style="mapHeight"/>
 </template>
 
 <script>
@@ -108,15 +108,31 @@ export default {
         'filter': ['==', '$type', 'Point']
       })
 
-      // this.mbgl.Marker()setLngLat([38.913184, -77.031952]).addTo(this.map)
+      // create a HTML element for each feature
+      let el = document.createElement('div')
+      el.className = 'marker'
+
+      // make a marker for each feature and add to the map
+      new this.mbgl.Marker(el)
+        .setLngLat([this.geolocation.longitude + 0.02, this.geolocation.latitude + 0.02])
+        .addTo(this.map)
     }
   }
 }
 </script>
 
 <style lang="postcss" scoped>
-  .mapboxgl-map,
-  .mapboxgl-map canvas {
-    @apply h-full w-full;
-  }
+.mapboxgl-map,
+.mapboxgl-map canvas {
+  @apply h-full w-full;
+}
+
+.marker {
+  background-image: url('../assets/images/sun.png');
+  background-size: cover;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+}
 </style>

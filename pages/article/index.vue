@@ -18,6 +18,13 @@ export default {
   data: () => ({
     allArticles: null
   }),
+  asyncData () {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        return resolve()
+      }, 1000)
+    })
+  },
   apollo: {
     allArticles
   }

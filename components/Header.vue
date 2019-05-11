@@ -1,23 +1,23 @@
 <template>
-  <header class="bg-indigo-darkest text-indigo-lightest px-2 py-1">
+  <header class="bg-white text-indigo-lightest px-2 py-1">
     <div class="flex items-center justify-between" ref="tabs">
       <nuxt-link
         :to="{name: tab.route}"
         :key="`${tab.name}-${index}`"
-        class="tab p-1 flex items-center cursor-pointer"
+        class="tab"
         v-for="(tab, index) in tabs"
       >
-        <img class="w-6 mx-1" :src="tab.image" :alt="tab.name">
+        <img class="w-5" :src="tab.image" :alt="tab.name">
       </nuxt-link>
 
-      <div class="tab p-1 flex justify-center items-center flex-grow">
+      <nuxt-link tag="div" to="/" class="flex-grow justify-center px-1 text-center">
         <img class="h-6" :src="logo" alt="Weather Control Organization Logo">
-      </div>
+      </nuxt-link>
 
-      <div class="mr-2 md:text-xs" @click="sendNotif">Send notif</div>
-      <div class="mr-2 md:text-xs">Mr. Moussard</div>
-      <nuxt-link :to="{name: account}" class="tab p-1 flex items-center cursor-pointer">
-        <img class="w-6 mx-1" :src="userImage" alt="Mon compte">
+      <div class="mr-2 md:text-xs text-indigo-darkest" @click="sendNotif">Send notif</div>
+      <div class="mr-2 md:text-xs text-indigo-darkest">Mr. Moussard</div>
+      <nuxt-link :to="{name: 'account'}" class="tab">
+        <img class="w-5" :src="userImage" alt="Mon compte">
       </nuxt-link>
     </div>
   </header>
@@ -86,8 +86,9 @@ export default {
 <style lang="postcss" scoped>
 .tab {
   position: relative;
+  @apply p-2 m-1 flex items-center cursor-pointer bg-indigo-darkest rounded-full;
 
-  &.nuxt-link-exact-active {
+  &.nuxt-link-exact-active:not(div) {
     border-bottom: 2px solid config('colors.white');
   }
 
