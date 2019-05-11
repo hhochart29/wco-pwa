@@ -28,9 +28,9 @@ export default {
       }, 1)
     },
     async finish () {
-      await this.delay(1000)
+      await this.delay(400)
       this.animated = false
-      await this.delay(1000)
+      await this.delay(800)
       this.loading = false
     }
   }
@@ -52,7 +52,7 @@ export default {
     height: 110vh;
     left: -15vw;
     right: -15vw;
-    transition: transform 1s ease-in-out;
+    transition: transform 0.8s ease-in-out;
   }
   & #layer1 {
     background-color: config('colors.indigo-darker');
