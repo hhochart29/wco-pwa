@@ -1,5 +1,7 @@
 <template>
-  <div v-if="article && Object.keys(article).length">Article Complet avec l'id : {{ $route.params.id }} - {{ article.title }}</div>
+  <div
+    v-if="article && Object.keys(article).length"
+  >Article Complet avec l'id : {{ $route.params.id }} - {{ article.title }}</div>
   <div v-else>L'article avec l'id {{ $route.params.id }} n'existe pas</div>
 </template>
 
@@ -8,6 +10,13 @@ import { articleById } from '@/graphql/query'
 
 export default {
   name: 'ArticleId',
+  asyncData () {
+    return new Promise(resolve => {
+      setTimeout(() => {
+        return resolve()
+      }, 1000)
+    })
+  },
   created () {
     this.$route.params.id = !this.$route.params.id ? 1 : this.$route.params.id
   },

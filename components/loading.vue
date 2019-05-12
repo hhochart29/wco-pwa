@@ -1,11 +1,9 @@
 <template>
-  <transition appear name="fade">
-    <div class="loading-page" v-show="loading">
-      <div id="layer1" class="layer" :class="{'animating': animated}"/>
-      <div id="layer2" class="layer" :class="{'animating': animated}"/>
-      <div id="layer3" class="layer" :class="{'animating': animated}"/>
-    </div>
-  </transition>
+  <div class="loading-page" v-show="loading">
+    <div id="layer1" class="layer" :class="{'animating': animated}"/>
+    <div id="layer2" class="layer" :class="{'animating': animated}"/>
+    <div id="layer3" class="layer" :class="{'animating': animated}"/>
+  </div>
 </template>
 
 <script>
@@ -30,7 +28,7 @@ export default {
     async finish () {
       await this.delay(400)
       this.animated = false
-      await this.delay(800)
+      await this.delay(1300)
       this.loading = false
     }
   }
