@@ -1,6 +1,8 @@
 <template xmlns:v-touch="http://www.w3.org/1999/xhtml">
   <div>
-    <div v-if="!isPageLoaded" class="loading-modal">First Loader</div>
+    <transition name="fade">
+      <div v-show="!isPageLoaded" class="loading-modal">Weather Control Organization</div>
+    </transition>
     <Header ref="header"/>
     <div class="slider-wrapper">
       <div
@@ -83,7 +85,9 @@ export default {
   @apply justify-center;
   @apply items-center;
   @apply text-indigo-lightest;
-  @apply bg-indigo-darkest;
+  @apply text-lg;
+  @apply font-bold;
+  @apply bg-indigo;
   @apply h-screen;
   @apply w-screen;
   @apply fixed;
@@ -95,5 +99,14 @@ export default {
   @apply bg-grey-light;
   @apply flex-no-shrink;
   @apply items-start;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
+}
+
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 </style>

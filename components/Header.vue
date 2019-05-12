@@ -14,8 +14,6 @@
         <img class="h-6" :src="logo" alt="Weather Control Organization Logo">
       </nuxt-link>
 
-      <div class="mr-2 md:text-xs text-indigo-darkest" @click="sendNotif">Send notif</div>
-      <div class="mr-2 md:text-xs text-indigo-darkest">Mr. Moussard</div>
       <nuxt-link :to="{name: 'account'}" class="tab">
         <img class="w-5" :src="userImage" alt="Mon compte">
       </nuxt-link>
@@ -45,40 +43,7 @@ export default {
   methods: {
     ...mapActions({
       setHeaderTab: 'header/tabs'
-    }),
-    sendNotif () {
-      let message = {
-        app_id: process.env.nuxt_signal_app_id,
-        contents: { 'en': 'Notifcation from rest API' },
-        included_segments: ['All']
-      }
-      let options = {
-        host: 'onesignal.com',
-        port: 443,
-        path: '/api/v1/notifications',
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json; charset=utf-8',
-          'Authorization': `Basic ${process.env.nuxt_signal_rest_api}`
-        }
-      }
-
-      let https = require('https')
-      let req = https.request(options, res => {
-        res.on('data', data => {
-          console.log('Response:')
-          console.log(JSON.parse(data))
-        })
-      })
-
-      req.on('error', e => {
-        console.log('ERROR:')
-        console.log(e)
-      })
-
-      req.write(JSON.stringify(message))
-      req.end()
-    }
+    })
   }
 }
 </script>
