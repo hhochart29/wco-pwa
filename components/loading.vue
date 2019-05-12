@@ -44,7 +44,6 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: config('colors.indigo-darkest');
   z-index: 99999;
   & .layer {
     position: fixed;
@@ -56,11 +55,11 @@ export default {
   }
   & #layer1 {
     background-color: config('colors.indigo-darker');
-    transform: translateY(105vh);
+    transform: rotate(2deg) translateY(105vh);
     transition-delay: 0.5s;
     &.animating {
       transition-delay: 0s;
-      transform: translateY(-5vh);
+      transform: rotate(2deg) translateY(-5vh);
     }
   }
   & #layer2 {
