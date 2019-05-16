@@ -1,5 +1,5 @@
 <template>
-  <header class="bg-white text-indigo-lightest px-2 py-1">
+  <header class="bg-indigo text-indigo-lightest px-2 py-1">
     <div class="flex items-center justify-between" ref="tabs">
       <nuxt-link
         :to="{name: tab.route}"
@@ -22,7 +22,6 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
 import map from '@/assets/images/map.svg'
 import news from '@/assets/images/news.svg'
 import vote from '@/assets/images/vote.svg'
@@ -39,43 +38,22 @@ export default {
     ],
     userImage: user,
     logo
-  }),
-  methods: {
-    ...mapActions({
-      setHeaderTab: 'header/tabs'
-    })
-  }
+  })
 }
 </script>
 
 <style lang="postcss" scoped>
 .tab {
   position: relative;
-  @apply p-2 m-1 flex items-center cursor-pointer bg-indigo-darkest rounded-full;
-
-  &.nuxt-link-exact-active:not(div) {
-    border-bottom: 2px solid config('colors.white');
-  }
-
-  & img {
-    z-index: 1;
-    position: relative;
-
-    & path {
-      fill: white;
-    }
-  }
-
-  & .active-bg {
+  @apply p-2 m-1 flex items-center cursor-pointer bg-indigo-lightest rounded-full;
+  &.nuxt-link-exact-active::after {
     content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    z-index: 0;
-    @apply bg-indigo-dark;
-    transition: transform 0.4s ease-in-out;
+    @apply absolute rounded-full;
+    top: 2px;
+    bottom: 2px;
+    right: 2px;
+    left: 2px;
+    border: 2px solid config('colors.indigo');
   }
 }
 </style>

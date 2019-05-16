@@ -96,7 +96,8 @@ export default {
 
 .layout-container {
   flex-basis: 100%;
-  @apply bg-grey-light;
+  @apply bg-grey-lighter;
+  @apply text-indigo;
   @apply flex-no-shrink;
   @apply items-start;
 }
