@@ -1,10 +1,10 @@
 <template>
-  <div>
-    <h1 class="pb-0 wcocontainer">Dernières actualités</h1>
-    <div v-if="allArticles && allArticles.length" class="wcocontainer">
+  <div class="wcocontainer">
+    <h1>Dernières actualités</h1>
+    <div v-if="allArticles && allArticles.length">
       <ArticlePreview v-bind="article" v-for="article in allArticles" :key="article.id"/>
     </div>
-    <div v-else>Aucun article pour le moment, revenez plus tard</div>
+    <div class="mt-3 alert" role="alert" v-else>Aucun article pour le moment, revenez plus tard</div>
   </div>
 </template>
 

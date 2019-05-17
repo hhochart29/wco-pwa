@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="wcocontainer text-5xl font-mono">
     Page 404 :)
   </div>
 </template>
