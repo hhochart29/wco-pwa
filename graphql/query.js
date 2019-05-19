@@ -45,3 +45,32 @@ export const articleById = gql`
   }
  }
 `
+
+export const allDelegates = gql`
+  {
+    allDelegates {
+      id
+      name
+      firstname
+      age
+      since
+      avatar {
+        alt
+        url
+      }
+      description
+      job
+      totalvote
+      weathervotes {
+        weather {
+          title
+          description
+          image {
+            alt
+            url
+          }
+        }
+      }
+    }
+  }
+`

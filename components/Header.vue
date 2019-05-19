@@ -17,7 +17,7 @@
         WCO
       </nuxt-link>
 
-      <nuxt-link :to="{name: 'delegation'}" class="tab">
+      <nuxt-link :to="{name: 'election'}" class="tab">
         <img class="w-5" :src="delegateImage" alt="Délégué">
       </nuxt-link>
 

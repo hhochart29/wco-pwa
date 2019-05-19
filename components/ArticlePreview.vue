@@ -37,7 +37,7 @@ export default {
       })
     },
     date () {
-      return dayjs(this.dateTime).locale('fr').format('Publié à HH:mm le D MMM')
+      return dayjs(this.dateTime).locale('fr').format('Publié à HH:mm le D MMM YYYY')
     },
     contentPreview () {
       return `${this.content.substr(0, 150)} ...`
