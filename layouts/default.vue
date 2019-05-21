@@ -98,7 +98,7 @@ export default {
   flex-basis: 100%;
   @apply bg-grey-lighter;
   @apply text-indigo;
-  @apply flex-no-shrink;
+  @apply flex-shrink-0;
   @apply items-start;
 }
 

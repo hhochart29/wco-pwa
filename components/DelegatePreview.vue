@@ -1,10 +1,14 @@
 <template>
-  <div class="mb-5 p-5 border-l-8 border-indigo">
-    <img :src="avatar.url" :alt="avatar.alt" />
-    {{ name }} - {{ firstname }} - {{ age }} - {{ job }} - {{ description }} {{ totalvote }}
-    <ul>
-      <li v-for="({ weather }, index) in weathervotes" :key="`${weather.title}-${index}`">{{ weather.title }} - <img :src="weather.image.url" :alt="weather.image.alt" /> - {{ weather.description }}</li>
-    </ul>
+  <div class="mb-5 p-4 border-l-4 border-indigo shadow bg-grey-lightest flex items-center flex-wrap">
+    <div class="w-full">
+      <h2 class="inline text-md">{{ name }} {{ firstname}}</h2><span class="text-xl">, {{ age }} ans</span>
+    </div>
+    <div class="mt-5 w-full flex flex-wrap items-center">
+      <img :src="avatar.url" :alt="avatar.alt" class="rounded-full w-24" />
+      <div class="flex-grow">
+        <span>Résumé</span>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -16,11 +20,9 @@ export default {
     firstname: String,
     age: Number,
     avatar: Object,
-    description: String,
     job: String,
     since: String,
-    totalvote: Number,
-    weathervotes: Array
+    totalvote: Number
   }
 }
 </script>

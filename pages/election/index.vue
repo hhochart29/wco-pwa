@@ -1,6 +1,7 @@
 <template>
   <div class="wcocontainer">
     <h1>Élection</h1>
+    <p class="my-5 text-justify">Bienvenue sur la page de délégation de votre vote. Vous pouvez choisir une personne qui va vous représenter lors de vos prochains votes.</p>
     <div v-if="allDelegates && allDelegates.length">
       <DelegatePreview v-for="delegate in allDelegates" v-bind="delegate" :key="delegate.id" />
     </div>

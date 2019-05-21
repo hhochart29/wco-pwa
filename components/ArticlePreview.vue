@@ -13,19 +13,19 @@
       <span
         class="inline-block bg-grey-light rounded-full px-3 py-1 my-1 text-sm font-semibold text-grey-darker"
       >
-        <img :src="source.picture.url" class="w-6 rounded-full align-middle mr-2">
+        <img :src="source.picture.url" class="w-6 inline rounded-full align-middle mr-2">
         {{ source.name }}
       </span>
       <span
         class="inline-block bg-grey-light rounded-full px-3 py-1 my-1 text-sm font-semibold text-grey-darker"
       >
-        <time-icon class="w-6 rounded-lg align-middle mr-2 fill-curent text-grey-darker"/>
+        <time-icon class="w-6 rounded-lg align-middle inline mr-2 fill-curent text-grey-darker"/>
         {{ date }}
       </span>
       <span
         class="inline-block bg-grey-light rounded-full px-3 py-1 my-1 text-sm font-semibold text-grey-darker"
       >
-        <hour-glass  class="w-6 align-middle mr-2 fill-curent text-grey-darker" />
+        <hour-glass  class="w-6 align-middle mr-2 inline fill-curent text-grey-darker" />
         {{ readingTime }}mn
       </span>
     </div>

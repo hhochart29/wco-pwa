@@ -9,7 +9,7 @@
  *
  * @import "tailwindcss/preflight";
  */
-@tailwind preflight;
+@tailwind base;
 
 /**
  * This injects any component classes registered by plugins.
@@ -51,6 +51,10 @@
   @apply border-indigo;
   @apply text-indigo-dark;
   @apply p-4;
+}
+
+.basis-50 {
+  flex-basis: 50%;
 }
 
 /**
