@@ -1,6 +1,6 @@
 <template>
   <article class="card rounded-sm overflow-hidden shadow-lg flex-grow my-5">
-    <div class="flex items-center bg-grey-light p-4">
+    <div class="flex items-center p-4">
       <img :src="avatar.url" alt="avatar.alt" class="rounded-full shadow w-24 h-24 mr-3" :class="{ 'border-4 border-green': id === currentDelegate }">
       <div class="avatar-desc">
         <div class="font-bold text-xl text-indigo">{{ name }} {{ firstname }}</div>

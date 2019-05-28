@@ -38,15 +38,14 @@ export default {
     allDelegates: null,
     openedMenu: null
   }),
-  apollo: {
-    allDelegates
-  },
-  asyncData () {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        return resolve()
-      }, 1000)
-    })
+  async asyncData ({ app }) {
+    let client = app.apolloProvider.defaultClient
+    let { data } = await client.query({ query: allDelegates })
+    if (app.$delay) {
+      await app.$delay(600)
+    }
+
+    return data
   },
   methods: {
     openMenuStart (id) {

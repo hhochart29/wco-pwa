@@ -16,12 +16,10 @@ export default {
     MapComponent: Map,
     info
   },
-  asyncData () {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        return resolve()
-      }, 1000)
-    })
+  async asyncData ({ app }) {
+    if (app.$delay) {
+      await app.$delay(800)
+    }
   },
   computed: {
     ...mapGetters({

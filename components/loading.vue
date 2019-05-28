@@ -14,11 +14,6 @@ export default {
     animated: false
   }),
   methods: {
-    delay (duration) {
-      return new Promise((resolve, reject) => {
-        setTimeout(() => { resolve() }, duration)
-      })
-    },
     start () {
       this.loading = true
       setTimeout(() => {
@@ -26,9 +21,8 @@ export default {
       }, 1)
     },
     async finish () {
-      await this.delay(400)
       this.animated = false
-      await this.delay(1300)
+      await this.$delay(600)
       this.loading = false
     }
   }
@@ -49,12 +43,12 @@ export default {
     height: 110vh;
     left: -15vw;
     right: -15vw;
-    transition: transform 0.8s ease-in-out;
+    transition: transform 0.3s ease-in-out;
   }
   & #layer1 {
     background-color: theme('colors.indigo-darker');
     transform: rotate(2deg) translateY(105vh);
-    transition-delay: 0.5s;
+    transition-delay: 0.3s;
     &.animating {
       transition-delay: 0s;
       transform: rotate(2deg) translateY(-5vh);
@@ -63,9 +57,9 @@ export default {
   & #layer2 {
     background-color: theme('colors.indigo-dark');
     transform: rotateZ(-2deg) translateY(105vh);
-    transition-delay: 0.2s;
+    transition-delay: 0.15s;
     &.animating {
-      transition-delay: 0.2s;
+      transition-delay: 0.15s;
       transform: rotateZ(-2deg) translateY(0vh);
     }
   }
@@ -74,7 +68,7 @@ export default {
     transform: rotateZ(5deg) translateY(105vh);
     transition-delay: 0s;
     &.animating {
-      transition-delay: 0.5s;
+      transition-delay: 0.3s;
       transform: rotateZ(5deg) translateY(-3vh);
     }
   }

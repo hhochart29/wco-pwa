@@ -16,31 +16,17 @@ export default {
   components: {
     info
   },
-  asyncData () {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        return resolve()
-      }, 1000)
-    })
+  async asyncData ({ app, params }) {
+    let client = app.apolloProvider.defaultClient
+    let { data } = await client.query({ query: articleById, variables: { id: params.id } })
+    if (app.$delay) {
+      await app.$delay(600)
+    }
+
+    return data
   },
   created () {
     this.$route.params.id = !this.$route.params.id ? 1 : this.$route.params.id
-  },
-  computed: {
-    id () {
-      return this.$route.params.id
-    }
-  },
-  apollo: {
-    article: {
-      query: articleById,
-      // function instead of object `variables` grants vue instance access :)
-      variables () {
-        return {
-          id: this.$route.params.id
-        }
-      }
-    }
   }
 }
 </script>

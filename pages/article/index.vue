@@ -19,15 +19,14 @@ export default {
   data: () => ({
     allArticles: null
   }),
-  asyncData () {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        return resolve()
-      }, 1000)
-    })
-  },
-  apollo: {
-    allArticles
+  async asyncData ({ app }) {
+    let client = app.apolloProvider.defaultClient
+    let { data } = await client.query({ query: allArticles })
+    if (app.$delay) {
+      await app.$delay(600)
+    }
+
+    return data
   },
   computed: {
     allArticlesOrdered () {

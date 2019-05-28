@@ -1,7 +1,7 @@
 <template>
   <transition name="fade">
     <div
-      class="relative bg-indigo-lightest border-l-4 border-indigo text-indigo-dark px-4 py-2 my-2"
+      class="relative w-full bg-indigo-lightest border-l-4 border-indigo text-indigo-dark px-4 py-2 my-2"
       role="alert"
       v-if="shown"
     >
