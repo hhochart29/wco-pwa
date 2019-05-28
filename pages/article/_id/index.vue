@@ -1,15 +1,21 @@
 <template>
-  <div
-    v-if="article && Object.keys(article).length"
-  >Article Complet avec l'id : {{ $route.params.id }} - {{ article.title }}</div>
-  <div v-else>L'article avec l'id {{ $route.params.id }} n'existe pas</div>
+  <div class="wcocontainer">
+    <div
+      v-if="article && Object.keys(article).length"
+    >Article Complet avec l'id : {{ $route.params.id }} - {{ article.title }}</div>
+    <info v-else>L'article avec l'id {{ $route.params.id }} n'existe pas</info>
+  </div>
 </template>
 
 <script>
 import { articleById } from '@/graphql/query'
+import info from '@/components/info'
 
 export default {
   name: 'ArticleId',
+  components: {
+    info
+  },
   asyncData () {
     return new Promise(resolve => {
       setTimeout(() => {

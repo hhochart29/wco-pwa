@@ -4,17 +4,18 @@
     <div v-if="allArticles && allArticles.length">
       <ArticlePreview v-bind="article" v-for="article in allArticlesOrdered" :key="article.id"/>
     </div>
-    <div class="mt-3 alert" role="alert" v-else>Aucun article pour le moment, revenez plus tard</div>
+    <info v-else title="Aucun article" class="mt-3">Revenez plus tard</info>
   </div>
 </template>
 
 <script>
 import { allArticles } from '@/graphql/query'
 import ArticlePreview from '@/components/ArticlePreview'
+import info from '@/components/info'
 
 export default {
   name: 'ArticleList',
-  components: { ArticlePreview },
+  components: { ArticlePreview, info },
   data: () => ({
     allArticles: null
   }),

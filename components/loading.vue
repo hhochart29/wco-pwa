@@ -52,7 +52,7 @@ export default {
     transition: transform 0.8s ease-in-out;
   }
   & #layer1 {
-    background-color: config('colors.indigo-darker');
+    background-color: theme('colors.indigo-darker');
     transform: rotate(2deg) translateY(105vh);
     transition-delay: 0.5s;
     &.animating {
@@ -61,7 +61,7 @@ export default {
     }
   }
   & #layer2 {
-    background-color: config('colors.indigo-dark');
+    background-color: theme('colors.indigo-dark');
     transform: rotateZ(-2deg) translateY(105vh);
     transition-delay: 0.2s;
     &.animating {
@@ -70,7 +70,7 @@ export default {
     }
   }
   & #layer3 {
-    background-color: config('colors.indigo');
+    background-color: theme('colors.indigo');
     transform: rotateZ(5deg) translateY(105vh);
     transition-delay: 0s;
     &.animating {

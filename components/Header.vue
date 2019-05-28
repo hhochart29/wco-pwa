@@ -48,7 +48,7 @@ export default {
 <style lang="postcss" scoped>
 .tab {
   position: relative;
-  @apply p-2 m-1 flex items-center cursor-pointer bg-indigo-lightest rounded-full;
+  @apply p-2 m-1 flex items-center cursor-pointer bg-grey-lighter rounded-full;
   &.nuxt-link-exact-active::after {
     content: '';
     @apply absolute rounded-full;
@@ -56,7 +56,7 @@ export default {
     bottom: 2px;
     right: 2px;
     left: 2px;
-    border: 2px solid config('colors.indigo');
+    border: 2px solid theme('colors.indigo');
   }
 }
 </style>

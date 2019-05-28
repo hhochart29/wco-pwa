@@ -107,7 +107,17 @@ export default {
   transition: opacity 0.3s;
 }
 
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
+.width-enter-active,
+.width-leave-active {
+  transition: width 1s;
+}
+
+.width-enter, .width-leave-to {
+  width: 0px;
+}
+
 </style>

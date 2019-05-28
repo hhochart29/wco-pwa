@@ -74,3 +74,32 @@ export const allDelegates = gql`
     }
   }
 `
+
+export const delegateById = gql`
+  query ($id: ItemId) {
+    delegate(filter: { id: { eq: $id } }) {
+      id
+      name
+      firstname
+      age
+      since
+      avatar {
+        alt
+        url
+      }
+      description
+      job
+      totalvote
+      weathervotes {
+        weather {
+          title
+          description
+          image {
+            alt
+            url
+          }
+        }
+      }
+    }
+  }
+`

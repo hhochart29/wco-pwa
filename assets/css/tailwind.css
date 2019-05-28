@@ -45,16 +45,12 @@
   @apply flex;
 }
 
-.alert {
-  @apply bg-indigo-lightest;
-  @apply border-l-4;
-  @apply border-indigo;
-  @apply text-indigo-dark;
-  @apply p-4;
-}
-
 .basis-50 {
   flex-basis: 50%;
+}
+
+h1 {
+  @apply font-bold text-3xl w-full text-center;
 }
 
 /**

@@ -6,7 +6,9 @@ const colors = {
   'indigo-lightest': '#dae1e7',
   'grey-lighter': '#f1f5f8',
   'grey-light': '#dae1e7',
-  'grey-darker': '#606f7b'
+  'grey-darker': '#606f7b',
+  'green': '#00ff00',
+  'red': '#ff00ff'
 }
 
 module.exports = {

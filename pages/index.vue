@@ -2,17 +2,19 @@
   <div class="map-wrap" v-if="geolocationData">
     <MapComponent/>
   </div>
-  <div v-else class="alert m-5" role="alert">Aucune coordonnées GPS de disponible</div>
+  <info v-else title="Aucune coordonnées GPS" class="m-5">Veuillez autoriser la localisation dans votre navigateur</info>
 </template>
 
 <script>
 import Map from '@/components/Map'
+import info from '@/components/info'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'Map',
   components: {
-    MapComponent: Map
+    MapComponent: Map,
+    info
   },
   asyncData () {
     return new Promise(resolve => {
