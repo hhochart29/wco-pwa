@@ -25,7 +25,7 @@
       <span
         class="inline-block bg-grey-light rounded-full px-3 py-1 my-1 text-sm font-semibold text-grey-darker"
       >
-        <hour-glass  class="w-6 align-middle mr-2 inline fill-curent text-grey-darker" />
+        <hour-glass class="w-6 align-middle mr-2 inline fill-curent text-grey-darker"/>
         {{ readingTime }}mn
       </span>
     </div>
@@ -35,8 +35,6 @@
 <script>
 import timeIcon from '@/components/svg/time'
 import hourGlass from '@/components/svg/hourglass'
-import dayjs from 'dayjs'
-import 'dayjs/locale/fr'
 
 export default {
   name: 'ArticlePreview',
@@ -60,7 +58,7 @@ export default {
       })
     },
     date () {
-      return dayjs(this.dateTime).locale('fr').format('HH:mm, D MMM YYYY')
+      return this.$dayjs && this.$dayjs(this.dateTime).format('HH:mm, D MMM YYYY')
     },
     contentPreview () {
       return `${this.content.substr(0, 150)} ...`

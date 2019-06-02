@@ -10,7 +10,7 @@
     <div class="flex flex-wrap justify-between p-4">
       <ul class="text-grey-darker text-base">
         <li>{{ job }}</li>
-        <li><b>{{ totalvote   }}</b> citoyen représentés</li>
+        <li><b>{{ totalvote }}</b> citoyens représentés</li>
         <li>Délégué depuis <b>{{ new Date(since).getFullYear() }}</b></li>
       </ul>
       <nuxt-link tag="button" :to="{name: 'election-id', params: { id: id } }" class="rounded-full  bg-indigo text-grey-lighter cursor-pointer py-2 px-4 mt-2 w-full">Détails</nuxt-link>

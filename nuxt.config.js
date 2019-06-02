@@ -35,7 +35,7 @@ module.exports = {
   */
   plugins: [
     '~/plugins/vue2-touch-events',
-    { src: '~/plugins/helper', ssr: false }
+    { src: '~/plugins/helper', mode: 'client' }
   ],
 
   /*

@@ -113,7 +113,7 @@ export default {
 
 .width-enter-active,
 .width-leave-active {
-  transition: width 1s;
+  transition: width .4s;
 }
 
 .width-enter, .width-leave-to {
