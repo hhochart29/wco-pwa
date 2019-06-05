@@ -87,15 +87,6 @@ export default {
               geometry: {
                 type: 'Point',
                 coordinates: [this.geolocation.longitude, this.geolocation.latitude]
-              },
-              properties: {
-                icon: {
-                  iconUrl: this.icons.sun,
-                  iconSize: [50, 50], // size of the icon
-                  iconAnchor: [25, 25], // point of the icon which will correspond to marker's location
-                  popupAnchor: [0, -25], // point from which the popup should open relative to the iconAnchor
-                  className: 'dot'
-                }
               }
             }]
         }
@@ -110,7 +101,7 @@ export default {
             'base': 2,
             'stops': [[0, 0], [20, this.metersToPixelsAtMaxZoom(50000, this.geolocation.latitude)]]
           },
-          'circle-color': '#B42222',
+          'circle-color': '#6574cd',
           'circle-opacity': 0.3
         },
         'filter': ['==', '$type', 'Point']
