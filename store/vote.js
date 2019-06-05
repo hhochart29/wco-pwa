@@ -8,9 +8,9 @@ export const getters = {
     if (state.weathers.length > 0) {
       state.weathers[0].voteCount = 102284
       state.weathers[1].voteCount = 76550
-      state.weathers[2].voteCount = 200003
-      state.weathers[3].voteCount = 9987
-      state.weathers[4].voteCount = 53457
+      state.weathers[2].voteCount = 9987
+      state.weathers[3].voteCount = 53457
+      state.weathers[4].voteCount = 200003
     }
     return state.weathers
   },

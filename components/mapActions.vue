@@ -4,17 +4,20 @@
       <map-modal v-if="voteActive" key="b">
         <h1 class="text-left">Faites votre choix</h1>
         <div class="flex flex-wrap justify-center pt-6">
-          <div v-for="weather in weathersResult"
-          :key="`weather-${weather.id}`"
-          @click="setCurrentVote(weather.id)"
-          class="weather flex items-center flex-col p-2 flex-grow-0"
-          style="flex-basis: 50%;"
-          :class="{'bg-grey-lighter text-indigo rounded': currentVote === weather.id}">
+          <div
+            v-for="weather in weathersResult"
+            :key="`weather-${weather.id}`"
+            @click="setCurrentVote(weather)"
+            class="weather flex items-center flex-col p-2 flex-grow-0"
+            style="flex-basis: 50%;"
+            :class="{'bg-grey-lighter text-indigo rounded': currentVote && currentVote.id === weather.id}"
+          >
             <h2 class="text-xl font-bold mb-2">{{ weather.title }}</h2>
-            <img :src="weather.image.url" class="w-20 h-20 bg-grey-lighter rounded-full p-2 shadow-xl">
-            <span class="italic font-xs mt-2 text-center">
-              {{ weather.description }}
-            </span>
+            <img
+              :src="weather.image.url"
+              class="w-20 h-20 bg-grey-lighter rounded-full p-2 shadow-xl"
+            >
+            <span class="italic font-xs mt-2 text-center">{{ weather.description }}</span>
           </div>
         </div>
       </map-modal>
@@ -40,6 +43,17 @@
           </div>
         </div>
       </map-modal>
+      <map-modal v-else-if="error" key="d">
+        <div class="wcocontainer">
+          <h1 class="text-left">Vote impossible</h1>
+          <span class="mt-5">
+            Vous avez déjà un représentant
+            Pour voter, vous avez besoin de reprendre vote vote.
+            Pour ce faire, rendez-vous sur la
+            <nuxt-link :to="{name: 'election-id', params: { id: currentDelegate.id } }" class="underline font-bold">page du représentant</nuxt-link>
+          </span>
+        </div>
+      </map-modal>
       <div v-else key="a" class="self-end w-full flex justify-around">
         <div class="bg-indigo p-5 rounded-full font-bold" @click="setVoteActive">Vote</div>
         <div class="bg-indigo p-5 rounded-full font-bold" @click="setResultsActive">Résultats</div>
@@ -55,7 +69,8 @@ import mapModal from '@/components/mapModal'
 export default {
   data: () => ({
     voteActive: false,
-    resultsActive: false
+    resultsActive: false,
+    error: false
   }),
   components: {
     mapModal
@@ -63,7 +78,8 @@ export default {
   computed: {
     ...mapGetters({
       weathersResult: 'vote/weathers',
-      currentVote: 'vote/currentVote'
+      currentVote: 'vote/currentVote',
+      currentDelegate: 'delegate/currentDelegate'
     }),
     totalVote () {
       return this.weathersResult.reduce((acc, curr) => acc + curr.voteCount, 0)
@@ -74,9 +90,13 @@ export default {
       setCurrentVote: 'vote/currentVote'
     }),
     close () {
-      this.voteActive = this.resultsActive = false
+      this.voteActive = this.resultsActive = this.error = false
     },
     setVoteActive () {
+      if (this.currentDelegate && this.currentDelegate.id) {
+        this.error = true
+        return false
+      }
       this.voteActive = true
     },
     setResultsActive () {
@@ -92,6 +112,6 @@ export default {
 }
 
 .weather {
-  transition: all ease-in-out 0.4s
+  transition: all ease-in-out 0.4s;
 }
 </style>

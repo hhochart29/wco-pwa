@@ -15,7 +15,8 @@ export const mutations = {
 }
 
 export const actions = {
-  async setCurrentDelegate ({ commit }, value) {
+  async setCurrentDelegate ({ commit, dispatch }, value) {
+    dispatch('vote/currentVote', null, { root: true })
     if (value) {
       let client = this.app.apolloProvider.defaultClient
       let { data: { delegate } } = await client.query({ query: delegateById, variables: { id: value } })

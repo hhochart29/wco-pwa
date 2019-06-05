@@ -6,9 +6,9 @@
       v-if="shown"
     >
       <span
-        class="absolute right-0 top-0 bg-indigo text-indigo-lightest p-2 cursor-pointer rounded-bl-sm"
+        class="absolute right-0 top-0 bg-indigo text-indigo-lightest p-2 cursor-pointer rounded-bl-sm w-8"
         @click="shown = !shown"
-      ><delete /></span>
+      ><deleteIcon /></span>
       <p class="font-bold">{{ title }}</p>
       <p class="pt-2">
         <slot/>
@@ -18,12 +18,12 @@
 </template>
 
 <script>
-import Delete from '@/components/svg/delete'
+import deleteIcon from '@/components/svg/delete'
 
 export default {
   name: 'info',
   components: {
-    Delete
+    deleteIcon
   },
   data: () => ({
     shown: true
