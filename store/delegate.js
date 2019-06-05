@@ -1,3 +1,5 @@
+import { delegateById } from '@/graphql/query'
+
 export const state = () => ({
   currentDelegate: null
 })
@@ -13,7 +15,9 @@ export const mutations = {
 }
 
 export const actions = {
-  setCurrentDelegate ({ commit }, value) {
-    commit('SET_CURRENT_DELEGATE', value)
+  async setCurrentDelegate ({ commit }, value) {
+    let client = this.app.apolloProvider.defaultClient
+    let { data: { delegate } } = await client.query({ query: delegateById, variables: { id: value } })
+    commit('SET_CURRENT_DELEGATE', delegate)
   }
 }

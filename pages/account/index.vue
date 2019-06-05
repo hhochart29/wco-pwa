@@ -1,18 +1,30 @@
 <template>
-  <div>
-    <h1>Bienvenue sur la page de votre compte</h1>
-    <h2>Récapitulatif de vos informations</h2>
+  <div class="wcocontainer">
+    <h1>Votre compte</h1>
+    <div class="text-left" v-if="currentDelegate">Votre delegue en cours : {{ currentDelegate }}</div>
+    <div v-else>
+      Vous n'avez aucun representant pour le moment, vous pouvez en choisir un
+      <n-link :to="{name: 'election'}">ici</n-link>
+    </div>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'account',
-  asyncData () {
-    return new Promise(resolve => {
-      setTimeout(() => {
-        return resolve()
-      }, 1000)
+  async asyncData ({ app }) {
+    if (app.$delay) {
+      await app.$delay(600)
+    }
+  },
+  data: () => ({
+    delegateProfile: null
+  }),
+  computed: {
+    ...mapGetters({
+      currentDelegate: 'delegate/currentDelegate'
     })
   }
 }
