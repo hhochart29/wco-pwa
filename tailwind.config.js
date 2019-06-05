@@ -7,8 +7,8 @@ const colors = {
   'grey-lighter': '#f1f5f8',
   'grey-light': '#dae1e7',
   'grey-darker': '#606f7b',
-  'green': '#00ff00',
-  'red': '#ff00ff'
+  'green': '#00796B',
+  'red': '#D32F2F'
 }
 
 module.exports = {

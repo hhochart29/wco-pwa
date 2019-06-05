@@ -107,17 +107,28 @@ export default {
   transition: opacity 0.3s;
 }
 
-.fade-enter, .fade-leave-to {
+.fade-enter,
+.fade-leave-to {
   opacity: 0;
 }
 
 .width-enter-active,
 .width-leave-active {
-  transition: width .4s;
+  transition: width 0.4s;
 }
 
-.width-enter, .width-leave-to {
+.width-enter,
+.width-leave-to {
   width: 0px;
 }
 
+.slide-enter-active,
+.slide-leave-active {
+  transition: transform 0.4s;
+}
+
+.slide-enter,
+.slide-leave-to {
+  transform: scaleY(0);
+}
 </style>

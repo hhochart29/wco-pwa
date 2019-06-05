@@ -13,7 +13,7 @@
           v-touch:swipe.right="closeMenu"
         />
         <transition name="width">
-          <delegate-picker :id="delegate.id" v-if="openedMenu === delegate.id"/>
+          <delegate-picker :id="delegate.id" v-if="openedMenu === delegate.id" />
         </transition>
       </div>
     </div>

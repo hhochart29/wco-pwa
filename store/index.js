@@ -1,3 +1,5 @@
+import { weathers } from '@/graphql/query'
+
 export const state = () => ({
   loaded: false
 })
@@ -17,5 +19,11 @@ export const actions = {
     setTimeout(_ => {
       commit('LOADED')
     }, 1000)
+  },
+  async nuxtServerInit ({ commit }, { app }) {
+    let client = app.apolloProvider.defaultClient
+    let { data: { allWeathers } } = await client.query({ query: weathers })
+
+    commit('vote/WEATHERS', allWeathers)
   }
 }

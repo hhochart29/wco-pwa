@@ -30,6 +30,18 @@
 
       <div class="p-5 my-5 text-justify bg-grey-light italic rounded">{{ delegate.description }}</div>
 
+      <transition appear mode="out-in" name="slide">
+        <div v-if="isCurrentDelegate" class="text-grey-lighter flex justify-center flex-wrap">
+          <div class="bg-grey-darker py-2 px-4 rounded-full my-2">Vous représente</div>
+          <button class="bg-red py-2 px-4 rounded-full my-2" @click="setCurrentDelegateStore(null)">Récupérer votre vote</button>
+        </div>
+        <button
+          class="text-grey-lighter bg-indigo px-4 py-2 rounded-full mb-4 m-auto cursor-pointer block"
+          @click="setDelegate"
+          v-else
+        >Choisir comme représentant</button>
+      </transition>
+
       <div v-if="delegate.weathervotes.length > 0">
         <h3 class="text-xl font-bold text-center pb-4">Derniers votes</h3>
         <div
@@ -47,7 +59,7 @@
           <div class="px-2 pb-2 text-sm italic">{{ weatherTimer(index) }}</div>
         </div>
       </div>
-      <h3 class="text-xl font-bold text-center pb-4">Aucun derniers votes</h3>
+      <h3 v-else class="text-xl font-bold text-center pb-4">Aucun derniers votes</h3>
     </div>
     <info v-else>Le délégué avec l'id {{ $route.params.id }} n'existe pas</info>
   </div>
@@ -55,6 +67,8 @@
 
 <script>
 import { delegateById } from '@/graphql/query'
+import { mapActions, mapGetters } from 'vuex'
+
 import info from '@/components/info'
 import user from '@/assets/images/user.svg'
 import vote from '@/assets/images/vote.svg'
@@ -83,6 +97,9 @@ export default {
     this.$route.params.id = !this.$route.params.id ? 1 : this.$route.params.id
   },
   computed: {
+    ...mapGetters({
+      currentDelegate: 'delegate/currentDelegate'
+    }),
     weatherTimer () {
       return (index) => {
         switch (index) {
@@ -96,8 +113,19 @@ export default {
         }
       }
     },
+    isCurrentDelegate () {
+      return this.currentDelegate && this.currentDelegate.id === this.delegate.id
+    },
     since () {
       return this.$dayjs && this.$dayjs(this.delegate.since).format('D MMM YYYY')
+    }
+  },
+  methods: {
+    ...mapActions({
+      setCurrentDelegateStore: 'delegate/setCurrentDelegate'
+    }),
+    setDelegate () {
+      this.setCurrentDelegateStore(this.delegate.id)
     }
   }
 }

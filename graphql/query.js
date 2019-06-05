@@ -103,3 +103,17 @@ export const delegateById = gql`
     }
   }
 `
+
+export const weathers = gql`
+  {
+    allWeathers {
+      id
+      title
+      description
+      image {
+        alt
+        url
+      }
+    }
+  }
+`
