@@ -8,10 +8,10 @@
       </div>
     </div>
     <div class="flex flex-wrap justify-between p-4">
-      <ul class="text-grey-darker text-base">
-        <li>{{ job }}</li>
-        <li><b>{{ totalvote }}</b> citoyens représentés</li>
-        <li>Délégué depuis <b>{{ new Date(since).getFullYear() }}</b></li>
+      <ul class="text-grey-darker text-base mb-3">
+        <li><img :src="user" class="w-6 inline-block mr-4" /><b>{{ totalvote }}</b> citoyens représentés</li>
+        <li class="my-2"><img :src="work" class="w-6 inline-block mr-4" />{{ job }}</li>
+        <li><img :src="vote" class="w-6 inline-block mr-4" />Délégué depuis <b>{{ new Date(since).getFullYear() }}</b></li>
       </ul>
       <nuxt-link tag="button" :to="{name: 'election-id', params: { id: id } }" class="rounded-full  bg-indigo text-grey-lighter cursor-pointer py-2 px-4 mt-2 w-full">Détails</nuxt-link>
     </div>
@@ -20,6 +20,9 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import user from '@/assets/images/user.svg'
+import vote from '@/assets/images/vote.svg'
+import work from '@/assets/images/work.svg'
 
 export default {
   props: {
@@ -32,6 +35,11 @@ export default {
     since: String,
     totalvote: Number
   },
+  data: () => ({
+    user,
+    vote,
+    work
+  }),
   computed: {
     ...mapGetters({
       currentDelegate: 'delegate/currentDelegate'

@@ -10,40 +10,44 @@
       >
 
       <div class="flex justify-center my-3 flex-wrap">
-        <div class="mr-3 flex justify-center items-center mr-5">
+        <div class="flex justify-center items-center mr-5 w-full">
           <img :src="age" class="w-6 mr-3">
           <b>{{ delegate.age }} ans</b>
         </div>
-        <div class="mr-3 flex justify-center items-center">
+        <div class="flex items-center">
           <img :src="vote" class="w-8 mr-3">
           <b>{{ delegate.totalvote }} citoyens représentés</b>
         </div>
-        <div>
+        <div class="my-1">
           Représentant depuis le
           <b>{{ since }}</b>
         </div>
-        <div>
-          <b>{{ delegate.job }}</b>
+        <div class="flex items-center">
+          <img :src="work" class="w-8 mr-3">
+          {{ delegate.job }}
         </div>
       </div>
 
-      <div class="p-5 my-5 text-justify bg-grey-light italic">{{ delegate.description }}</div>
+      <div class="p-5 my-5 text-justify bg-grey-light italic rounded">{{ delegate.description }}</div>
 
-      <h3 class="text-xl font-bold text-center pb-4">Derniers votes</h3>
-      <div
-        v-for="({ weather }, index) in delegate.weathervotes"
-        :key="`${weather.title}-${index}`"
-        class="mb-5 border-indigo border rounded-sm"
-      >
-        <div class="flex items-center justify-between p-2 bg-indigo text-indigo-lightest">
-          <h3 class="font-bold text-center">{{ weather.title }}</h3>
-          <div class="w-12 h-12 px-2 bg-grey-lighter rounded-full flex items-center">
-            <img :src="weather.image.url" :alt="weather.image.alt" >
+      <div v-if="delegate.weathervotes.length > 0">
+        <h3 class="text-xl font-bold text-center pb-4">Derniers votes</h3>
+        <div
+          v-for="({ weather }, index) in delegate.weathervotes"
+          :key="`${weather.title}-${index}`"
+          class="mb-5 border-indigo border rounded-sm"
+        >
+          <div class="flex items-center justify-between p-2 bg-indigo text-indigo-lightest">
+            <h3 class="font-bold text-center">{{ weather.title }}</h3>
+            <div class="w-12 h-12 px-2 bg-grey-lighter rounded-full flex items-center">
+              <img :src="weather.image.url" :alt="weather.image.alt">
+            </div>
           </div>
+          <div class="px-2 pt-2">{{ weather.description }}</div>
+          <div class="px-2 pb-2 text-sm italic">{{ weatherTimer(index) }}</div>
         </div>
-        <div class="px-2 pt-2">{{ weather.description }}</div>
-        <div class="px-2 pb-2 text-sm italic">{{ weatherTimer(index) }}</div>
       </div>
+      <h3 class="text-xl font-bold text-center pb-4">Aucun derniers votes</h3>
     </div>
     <info v-else>Le délégué avec l'id {{ $route.params.id }} n'existe pas</info>
   </div>
@@ -54,6 +58,7 @@ import { delegateById } from '@/graphql/query'
 import info from '@/components/info'
 import user from '@/assets/images/user.svg'
 import vote from '@/assets/images/vote.svg'
+import work from '@/assets/images/work.svg'
 
 export default {
   name: 'ArticleId',
@@ -62,7 +67,8 @@ export default {
   },
   data: () => ({
     age: user,
-    vote
+    vote,
+    work
   }),
   async asyncData ({ app, params }) {
     let client = app.apolloProvider.defaultClient

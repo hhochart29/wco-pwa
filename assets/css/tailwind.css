@@ -50,7 +50,7 @@
 }
 
 h1 {
-  @apply font-bold text-3xl w-full text-center;
+  @apply font-bold text-3xl w-full text-center leading-tight;
 }
 
 /**

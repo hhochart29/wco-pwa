@@ -13,9 +13,7 @@
         tag="div"
         :to="{name: 'index'}"
         class="flex-grow text-3xl justify-center px-1 text-center font-mono"
-      >
-        WCO
-      </nuxt-link>
+      >WCO</nuxt-link>
 
       <nuxt-link :to="{name: 'election'}" class="tab">
         <img class="w-5" :src="delegateImage" alt="Délégué">
