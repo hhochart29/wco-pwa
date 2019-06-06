@@ -29,13 +29,13 @@ export default {
       return this.geolocation && this.geolocation.latitude && this.geolocation.longitude
     }
   },
-  mounted () {
-    this.setGeolocation()
-  },
   methods: {
     ...mapActions({
-      setGeolocation: 'map/geolocation'
+      setGeolocation: 'map/setGeolocation'
     })
+  },
+  mounted () {
+    this.setGeolocation()
   }
 }
 </script>

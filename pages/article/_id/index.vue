@@ -55,6 +55,11 @@ export default {
   },
   created () {
     this.$route.params.id = !this.$route.params.id ? 1 : this.$route.params.id
+  },
+  mounted () {
+    if (this.$route.params.id === '1081315') {
+      this.$store.dispatch('vote/update')
+    }
   }
 }
 </script>

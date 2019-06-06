@@ -19,29 +19,43 @@
             >
             <span class="italic font-xs mt-2 text-center">{{ weather.description }}</span>
           </div>
+          <div class="w-full bg-indigo-darker text-grey-lighter p-2 rounded text-center font-bold">Fin des votes a 19h</div>
         </div>
       </map-modal>
       <map-modal v-else-if="resultsActive" key="c">
         <h1 class="text-left">Résultats</h1>
-        <div class="pt-12">
+        <div class="pt-5">
           <div
             v-for="weatherResult in weathersResult"
             :key="`weather-${weatherResult.id}`"
-            class="mb-5"
+            class="mb-3 bg-indigo-darker p-2 rounded shadow-lg"
           >
             <div class="flex items-center justify-between">
-              <div>
+              <div class="leading-tight">
                 <h3 class="text-xl font-bold leading-tight">{{weatherResult.title }}</h3>
-                <span class="italic text-xs leading-tight">{{ weatherResult.voteCount }} Votes</span>
+                <span class="italic text-xs leading-tight">{{ weatherResult.vote }} Votes</span>
                 <br>
-                <span class="italic text-sm leading-tight">{{ `${(weatherResult.voteCount / totalVote * 100).toFixed(2)} %` }}</span>
+                <span class="italic text-sm leading-tight">{{ `${(weatherResult.vote / totalVote * 100).toFixed(2)} %` }}</span>
               </div>
               <img :src="weatherResult.image.url" class="w-12 bg-grey-lighter rounded-full p-2">
             </div>
             <div
-              class="bg-white h-2"
-              :style="{width: `${weatherResult.voteCount / totalVote * 100}%`}"
+              class="bg-white h-2 mt-1"
+              :style="{width: `${weatherResult.vote / totalVote * 100}%`}"
             >
+            </div>
+          </div>
+
+          <div class="mb-3 bg-indigo-lightest text-indigo-darker rounded shadow-lg" >
+            <div class="w-full bg-indigo-darker text-indigo-lightest px-2 rounded-t">En tête</div>
+            <div class="flex items-center justify-between p-2">
+              <div class="leading-tight">
+                <h3 class="text-xl font-bold leading-tight">{{ currentWinner.title }}</h3>
+                <span class="italic text-xs leading-tight">{{ currentWinner.vote }} Votes</span>
+                <br>
+                <span class="italic text-sm leading-tight">{{ `${(currentWinner.vote / totalVote * 100).toFixed(2)} %` }}</span>
+              </div>
+              <img :src="currentWinner.image.url" class="w-12 bg-grey-lighter rounded-full p-2">
             </div>
           </div>
         </div>
@@ -87,15 +101,19 @@ export default {
       currentVote: 'vote/currentVote',
       currentDelegate: 'delegate/currentDelegate'
     }),
-    sortedVote () {
-      return [...this.weathersResult].sort((a, b) => {
-        if (a.voteCount < b.voteCount) return -1
-        if (a.voteCount > b.voteCount) return 1
-        return 0
-      })
-    },
     totalVote () {
-      return this.weathersResult.reduce((acc, curr) => acc + curr.voteCount, 0)
+      return this.weathersResult.reduce((acc, curr) => acc + curr.vote, 0)
+    },
+    currentWinner () {
+      let a = 0
+      let i = 0
+      this.weathersResult.forEach((result, index) => {
+        if (result.vote > a) {
+          a = result.vote
+          i = index
+        }
+      })
+      return this.weathersResult[i]
     }
   },
   methods: {

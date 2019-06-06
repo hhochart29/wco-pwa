@@ -13,7 +13,7 @@ export const mutations = {
 }
 
 export const actions = {
-  geolocation ({ commit }) {
+  setGeolocation ({ commit }) {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (position) => {

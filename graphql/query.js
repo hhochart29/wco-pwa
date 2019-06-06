@@ -110,6 +110,7 @@ export const weathers = gql`
       id
       title
       description
+      vote
       image {
         alt
         url
