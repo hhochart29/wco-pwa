@@ -61,7 +61,7 @@ module.exports = {
     }
   },
 
-  generates: {
+  generate: {
     routes: [
       '/article/1081315'
     ]
