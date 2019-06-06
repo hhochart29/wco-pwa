@@ -1,8 +1,8 @@
 <template>
   <div class="wcocontainer">
-    <button @click="sendNotif1" class="block p-5 bg-indigo text-white mt-5">Send Notif</button>
-    <button @click="sendNotif2" class="block p-5 bg-indigo text-white mt-5">Send Notif</button>
-    <button @click="sendNotif3" class="block p-5 bg-indigo text-white mt-5">Send Notif</button>
+    <button @click="sendNotif1" class="block p-5 bg-indigo text-white mt-5">Vote dispo</button>
+    <button @click="sendNotif2" class="block p-5 bg-indigo text-white mt-5">Agriculture nantaise secheresse</button>
+    <button @click="sendNotif3" class="block p-5 bg-indigo text-white mt-5">Representant</button>
   </div>
 </template>
 

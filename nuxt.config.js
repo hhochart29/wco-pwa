@@ -61,6 +61,12 @@ module.exports = {
     }
   },
 
+  generates: {
+    routes: [
+      '/article/1081315'
+    ]
+  },
+
   /*
   ** Build configuration
   */
