@@ -4,7 +4,7 @@
     <div v-if="allDelegates && allDelegates.length" class="flex-grow">
       <info>
         Bienvenue sur la page de délégation de votre vote. Vous pouvez choisir une personne qui va vous représenter lors de vos prochains votes
-        <b>Votre vote est réatribuable à tout moment.</b> Si aucun délégue n'est sélectionné, le vote est à faire manuellement depuis la carte
+        <b>Votre vote est réattribuable à tout moment.</b> Si aucun délégue n'est sélectionné, le vote est à faire manuellement depuis la carte
       </info>
       <div class="flex" v-for="delegate in allDelegates" :key="delegate.id">
         <DelegatePreview

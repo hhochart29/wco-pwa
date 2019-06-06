@@ -11,14 +11,17 @@
         {{ article.readingTime }}mn
       </div>
       <div class="flex py-1 px-2 bg-grey-light rounded-full info mx-2 my-1 text-xs italic">
-        <img :src="article.source.picture.url" class="w-4 h-4 align-middle mr-2 inline rounded-full"/>
+        <img
+          :src="article.source.picture.url"
+          class="w-4 h-4 align-middle mr-2 inline rounded-full"
+        >
         {{ article.source.name }}
       </div>
     </div>
     <div class="relative">
       <img :src="article.image.url">
     </div>
-    <div class="wcocontainer">{{ article.content }}</div>
+    <div class="wcocontainer" v-html="article.content"/>
   </article>
   <info v-else>L'article avec l'id {{ $route.params.id }} n'existe pas</info>
 </template>
@@ -55,3 +58,11 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss">
+blockquote {
+  @apply p-3 my-2;
+  @apply bg-grey-light;
+  @apply text-grey-darker;
+}
+</style>

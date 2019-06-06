@@ -7,7 +7,7 @@
     <img :src="image.url" alt="image.alt" class="w-full">
     <div class="px-6 py-4">
       <div class="font-bold text-xl mb-2">{{ title }}</div>
-      <p class="text-grey-darker text-base">{{ contentPreview }}</p>
+      <p class="text-grey-darker text-base" v-html="contentPreview" />
     </div>
     <div class="px-6 py-4 flex flex-wrap justify-between">
       <span
@@ -67,8 +67,12 @@ export default {
 }
 </script>
 
-<style scoped lang="postcss">
+<style lang="postcss">
 .card {
   flex-basis: 17rem;
+  & blockquote {
+    @apply hidden;
+  }
 }
+
 </style>

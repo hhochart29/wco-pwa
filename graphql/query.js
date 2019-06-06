@@ -2,7 +2,7 @@ import gql from 'graphql-tag'
 
 export const allArticles = gql`
   {
-    allArticles {
+    allArticles(filter: { shown: {eq: true } }) {
       id
       title
       content
