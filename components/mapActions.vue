@@ -51,7 +51,7 @@
           <h1 class="text-left">Vote impossible</h1>
           <span class="mt-5">
             Vous avez déjà un représentant
-            Pour voter, vous avez besoin de reprendre vote vote.
+            Pour voter, vous avez besoin de reprendre votre vote.
             Pour ce faire, rendez-vous sur la
             <nuxt-link
               :to="{name: 'election-id', params: { id: currentDelegate.id } }"
