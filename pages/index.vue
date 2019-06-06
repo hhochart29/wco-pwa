@@ -29,7 +29,7 @@ export default {
       return this.geolocation && this.geolocation.latitude && this.geolocation.longitude
     }
   },
-  beforeMount () {
+  mounted () {
     this.setGeolocation()
   },
   methods: {

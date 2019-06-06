@@ -31,15 +31,18 @@
           >
             <div class="flex items-center justify-between">
               <div>
-                <h3 class="text-xl font-bold">{{weatherResult.title }}</h3>
-                <span class="italic text-sm">{{ weatherResult.voteCount }} Votes</span>
+                <h3 class="text-xl font-bold leading-tight">{{weatherResult.title }}</h3>
+                <span class="italic text-xs leading-tight">{{ weatherResult.voteCount }} Votes</span>
+                <br>
+                <span class="italic text-sm leading-tight">{{ `${(weatherResult.voteCount / totalVote * 100).toFixed(2)} %` }}</span>
               </div>
               <img :src="weatherResult.image.url" class="w-12 bg-grey-lighter rounded-full p-2">
             </div>
             <div
               class="bg-white h-2"
               :style="{width: `${weatherResult.voteCount / totalVote * 100}%`}"
-            />
+            >
+            </div>
           </div>
         </div>
       </map-modal>
@@ -50,13 +53,16 @@
             Vous avez déjà un représentant
             Pour voter, vous avez besoin de reprendre vote vote.
             Pour ce faire, rendez-vous sur la
-            <nuxt-link :to="{name: 'election-id', params: { id: currentDelegate.id } }" class="underline font-bold">page du représentant</nuxt-link>
+            <nuxt-link
+              :to="{name: 'election-id', params: { id: currentDelegate.id } }"
+              class="underline font-bold"
+            >page du représentant</nuxt-link>
           </span>
         </div>
       </map-modal>
       <div v-else key="a" class="self-end w-full flex justify-around">
-        <div class="bg-indigo p-5 rounded-full font-bold" @click="setVoteActive">Vote</div>
-        <div class="bg-indigo p-5 rounded-full font-bold" @click="setResultsActive">Résultats</div>
+        <div class="bg-indigo px-5 py-3 rounded-full font-bold" @click="setVoteActive">Vote</div>
+        <div class="bg-indigo px-5 py-3 rounded-full font-bold" @click="setResultsActive">Résultats</div>
       </div>
     </transition>
   </div>
@@ -81,6 +87,13 @@ export default {
       currentVote: 'vote/currentVote',
       currentDelegate: 'delegate/currentDelegate'
     }),
+    sortedVote () {
+      return [...this.weathersResult].sort((a, b) => {
+        if (a.voteCount < b.voteCount) return -1
+        if (a.voteCount > b.voteCount) return 1
+        return 0
+      })
+    },
     totalVote () {
       return this.weathersResult.reduce((acc, curr) => acc + curr.voteCount, 0)
     }

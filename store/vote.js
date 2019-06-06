@@ -10,7 +10,7 @@ export const getters = {
       state.weathers[1].voteCount = 76550
       state.weathers[2].voteCount = 9987
       state.weathers[3].voteCount = 53457
-      state.weathers[4].voteCount = 200003
+      state.weathers[4].voteCount = 200103
     }
     return state.weathers
   },

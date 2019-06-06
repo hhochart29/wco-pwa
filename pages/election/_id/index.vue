@@ -52,7 +52,7 @@
         <div
           v-for="({ weather }, index) in delegate.weathervotes"
           :key="`${weather.title}-${index}`"
-          class="mb-5 border-indigo border rounded-sm"
+          class="mb-5 shadow rounded-sm"
         >
           <div class="flex items-center justify-between p-2 bg-indigo text-indigo-lightest">
             <h3 class="font-bold text-center">{{ weather.title }}</h3>
