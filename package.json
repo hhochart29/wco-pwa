@@ -20,7 +20,7 @@
     "cross-env": "^5.2.0",
     "dayjs": "^1.8.14",
     "dotenv": "^6.2.0",
-    "express": "^4.17.0",
+    "express": "^4.17.3",
     "fs": "0.0.1-security",
     "graphql-tag": "^2.10.1",
     "mapbox-gl": "^0.53.1",
