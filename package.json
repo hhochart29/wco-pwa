@@ -24,7 +24,7 @@
     "fs": "0.0.1-security",
     "graphql-tag": "^2.10.1",
     "mapbox-gl": "^0.53.1",
-    "nuxt": "^2.4.0",
+    "nuxt": "^2.15.8",
     "vue-moment": "^4.0.0",
     "vue2-touch-events": "^1.1.2"
   },
